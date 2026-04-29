@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Аутори</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="izgled.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
-    <h1>Аутори</h1>
+    <h1 class="font">Аутори</h1>
 
     <form action="#" method="get">
         <label for="pretraga">Претрага аутора:</label>
@@ -16,40 +17,41 @@
         <button type="submit">Претражи</button>
     </form>
 
-    <details>
-        <summary>Улогуј се</summary>
-        <form action="#" method="post">
-            <label for="login-ime">Име:</label>
-            <input type="text" id="login-ime" name="ime"><br>
+    <div class="">
+        <details>
+            <summary>Улогуј се</summary>
+            <form action="#" method="post">
+                <label for="login-ime">Име:</label>
+                <input type="text" id="login-ime" name="ime"><br>
 
-            <label for="login-lozinka">Лозинка:</label>
-            <input type="password" id="login-lozinka" name="lozinka"><br>
+                <label for="login-lozinka">Лозинка:</label>
+                <input type="password" id="login-lozinka" name="lozinka"><br>
 
-            <button type="submit">Пријави се</button>
-        </form>
-    </details>
+                <button type="submit">Пријави се</button>
+            </form>
+        </details>
 
-    <details>
-        <summary>Региструј се</summary>
-        <form action="#" method="post">
-            <label for="signin-ime">Име:</label>
-            <input type="text" id="signin-ime" name="ime"><br>
+        <details>
+            <summary>Региструј се</summary>
+            <form action="#" method="post">
+                <label for="signin-ime">Име:</label>
+                <input type="text" id="signin-ime" name="ime"><br>
 
-            <label for="signin-lozinka">Лозинка:</label>
-            <input type="password" id="signin-lozinka" name="lozinka"><br>
+                <label for="signin-lozinka">Лозинка:</label>
+                <input type="password" id="signin-lozinka" name="lozinka"><br>
 
-            <button type="submit">Региструј се</button>
-        </form>
-    </details>
-
+                <button type="submit">Региструј се</button>
+            </form>
+        </details>
+    </div>
 </header>
 
 <main>
 
     <h2>Листа аутора</h2>
 
-    <div class="flex justify-start gap-4 bg-gray-100 p-4">
-        <div class="bg-gray-200 p-4 rounded">
+    <div class="container">
+        <div class="item">
             <a href="autor.html">
                 <h3>Име Презиме</h3>
             </a>
@@ -66,7 +68,7 @@
                 <li>slika2.jpg</li>
             </ul>
         </div>
-        <div class="bg-gray-200 p-4 rounded">
+        <div class="item">
             <a href="autor.html">
                 <h3>Име Презиме</h3>
             </a>
@@ -84,7 +86,7 @@
                 <li>slika3.jpg</li>
             </ul>
         </div>
-        <div class="bg-gray-200 p-4 rounded">
+        <div class="item">
             <a href="autor.html">
                 <h3>Име Презиме</h3>
             </a>
