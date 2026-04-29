@@ -3,56 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Аутори</title>
-    <link rel="stylesheet" href="izgled.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
-    <h1 class="font">Аутори</h1>
+    <h1 class="text title">Аутори</h1>
 
     <form action="#" method="get">
-        <label for="pretraga">Претрага аутора:</label>
-        <input type="text" id="pretraga" name="pretraga" placeholder="Унеси име или презиме">
-        <button type="submit">Претражи</button>
+        <label for="pretraga" class="text">Претрага аутора:</label>
+        <input type="text" id="pretraga" name="pretraga" placeholder="Унеси име или презиме" class="inputStyle">
+        <button type="submit" class="buttonStyle">Претражи</button>
     </form>
 
-    <div class="">
-        <details>
-            <summary>Улогуј се</summary>
-            <form action="#" method="post">
-                <label for="login-ime">Име:</label>
-                <input type="text" id="login-ime" name="ime"><br>
-
-                <label for="login-lozinka">Лозинка:</label>
-                <input type="password" id="login-lozinka" name="lozinka"><br>
-
-                <button type="submit">Пријави се</button>
-            </form>
-        </details>
-
-        <details>
-            <summary>Региструј се</summary>
-            <form action="#" method="post">
-                <label for="signin-ime">Име:</label>
-                <input type="text" id="signin-ime" name="ime"><br>
-
-                <label for="signin-lozinka">Лозинка:</label>
-                <input type="password" id="signin-lozinka" name="lozinka"><br>
-
-                <button type="submit">Региструј се</button>
-            </form>
-        </details>
+    <div class="header-right">
+        <button id="openLogin" class="buttonStyle">Пријави  се</button>
+        <button id="openSignin" class="buttonStyle">Региструј се</button>
     </div>
 </header>
 
+    <div class="login" id="login">
+        <div class="popup-content">
+            <form action="#" method="post">
+                <label for="login-ime" class="text">Име:</label>
+                <input type="text" id="login-ime" name="ime" class="inputStyle"><br>
+                <label for="login-lozinka" class="text">Лозинка:</label>
+                <input type="password" id="login-lozinka" name="lozinka" class="inputStyle"><br>
+                <button type="submit" class="buttonStyle">Пријави се</button>
+            </form>
+        <button id="closeLogin" class="buttonStyle">Затвори</button>
+        </div>
+    </div>
+
+    <div class="signin" id="signin">
+        <div class="popup-content">
+            <form action="#" method="post">
+                <label for="signin-ime" class="text">Име:</label>
+                <input type="text" id="signin-ime" name="ime" class="inputStyle"><br>
+                <label for="signin-lozinka" class="text">Лозинка:</label>
+                <input type="password" id="signin-lozinka" name="lozinka" class="inputStyle"><br>
+                <button type="submit" class="buttonStyle">Региструј се</button>
+            </form>
+        <button id="closeSignin" class="buttonStyle">Затвори</button>
+        </div>
+    </div>
+
 <main>
-
-    <h2>Листа аутора</h2>
-
-    <div class="container">
-        <div class="item">
-            <a href="autor.html">
+    <div class="container middle">
+        <button class="item">
+            <a href="autor.html" class="name">
                 <h3>Име Презиме</h3>
             </a>
             <p>Биографија: Кратак опис аутора...</p>
@@ -67,9 +67,9 @@
                 <li>slika1.jpg</li>
                 <li>slika2.jpg</li>
             </ul>
-        </div>
-        <div class="item">
-            <a href="autor.html">
+        </button>
+        <button class="item">
+            <a href="autor.html" class="name">
                 <h3>Име Презиме</h3>
             </a>
             <p>Биографија: Кратак опис аутора...</p>
@@ -85,9 +85,9 @@
                 <li>slika2.jpg</li>
                 <li>slika3.jpg</li>
             </ul>
-        </div>
-        <div class="item">
-            <a href="autor.html">
+        </button>
+        <button class="item">
+            <a href="autor.html" class="name">
                 <h3>Име Презиме</h3>
             </a>
             <p>Биографија: Кратак опис аутора...</p>
@@ -101,10 +101,58 @@
             <ul>
                 <li>slika1.jpg</li>
             </ul>
-        </div>
+        </button>
+        <button class="item">
+            <a href="autor.html" class="name">
+                <h3>Име Презиме</h3>
+            </a>
+            <p>Биографија: Кратак опис аутора...</p>
+            <p>Датум рођења: 03.09.1950.</p>
+            <p>Статус: Преminuo</p>
+            <p>Број освојених награда: 15</p>
+            <p>Број продатих примерака: 1000000</p>
+            <p>Контакт телефон менаџера: +381 60 5555555</p>
+
+            <p>Слике:</p>
+            <ul>
+                <li>slika1.jpg</li>
+            </ul>
+        </button>
+        <button class="item">
+            <a href="autor.html" class="name">
+                <h3>Име Презиме</h3>
+            </a>
+            <p>Биографија: Кратак опис аутора...</p>
+            <p>Датум рођења: 03.09.1950.</p>
+            <p>Статус: Преminuo</p>
+            <p>Број освојених награда: 15</p>
+            <p>Број продатих примерака: 1000000</p>
+            <p>Контакт телефон менаџера: +381 60 5555555</p>
+
+            <p>Слике:</p>
+            <ul>
+                <li>slika1.jpg</li>
+            </ul>
+        </button>
+        <button class="item">
+            <a href="autor.html" class="name">
+                <h3>Име Презиме</h3>
+            </a>
+            <p>Биографија: Кратак опис аутора...</p>
+            <p>Датум рођења: 03.09.1950.</p>
+            <p>Статус: Преminuo</p>
+            <p>Број освојених награда: 15</p>
+            <p>Број продатих примерака: 1000000</p>
+            <p>Контакт телефон менаџера: +381 60 5555555</p>
+
+            <p>Слике:</p>
+            <ul>
+                <li>slika1.jpg</li>
+            </ul>
+        </button>
     </div>
 
 </main>
-
+<script src="function.js"></script>
 </body>
 </html>
