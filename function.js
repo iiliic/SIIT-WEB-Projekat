@@ -4,9 +4,8 @@ const closeLogin = document.getElementById("closeLogin");
 const openSignin = document.getElementById("openSignin");
 const closeSignin = document.getElementById("closeSignin");
 
-
 openLogin.onclick = () => {
-    login.classList.add("show");
+  login.classList.add("show");
 };
 
 closeLogin.onclick = () => {
@@ -20,4 +19,8 @@ openSignin.onclick = () => {
 closeSignin.onclick = () => {
   signin.classList.remove("show");
 };
+
+function goToPage() {
+  window.location.href = "lista-knjiga.html";
+}
 

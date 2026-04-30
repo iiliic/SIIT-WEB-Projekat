@@ -7,98 +7,29 @@ header {
     left: 0;
     width: 100%;
     height: 120px;
-    background-color: #1e2328;
-    border-bottom: 2px solid #f5b301;
+    background-color: #161412;
+    border-bottom: 2px solid #fbc90e;
+    z-index: 1000;
 }
-body{
-    margin: 0; 
-    padding: 0;
-    background-color: #2a2e34;
-}
-
-main {
-    margin-top: 140px;
+.logo-container{
     display: flex;
-    justify-content: center;
-}
-
-.text{
-    font-family: Roboto;
-    color: #ec9c04;
-
-.title{
+    align-items: center;
     margin-left: 20px;
+    height: 70%;
+    cursor: pointer;
 }
 
-
+.logo-container .logo{
+    height: 100%;
+    width: auto;
 }
+
 .header-right {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     gap:10px;
     margin-right: 20px;
 }
-
-.buttonStyle {
-    background-color: #2a2e34;
-    color: #f5b301;
-    border: 2px solid #f5b301;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: none;
-    transition: all 0.3s ease;
-}
-.buttonStyle:hover {
-    background-color: #f5b301;
-    color: #2a2e34;
-    box-shadow: 0 0 5px #fed255,
-    0 0 10px #fed255,
-    0 0 20px #fed255;
-}
-
-.inputStyle {
-    color:#fed255;  
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #f5b301;
-    background-color: #2a2e34;
-    transition: all 0.3s ease;
-}
-.inputStyle::placeholder {
-    color: #fed255;
-}
-.inputStyle:focus {
-    outline: none;
-    border-color: #f5b301;
-    background-color: #3b3f46;
-}
-
-.container{
-    background-color: #2a2e34;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-    gap: 20px;
-    width: 90%;
-}
-
-.item{
-    height: 600px;
-    font-family: Roboto;
-    background-color: #3b3f46;
-    color: #ec9c04;
-    border: 2px solid #f5b301;
-    padding: 20px;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.item:hover{
-    transform: scale(1.05);
-    box-shadow: 0 0 10px #fed255,
-                0 0 20px #fed255,
-                0 0 30px #fed255;
-}
-
 
 .login {
     position: fixed;
@@ -115,12 +46,7 @@ main {
     opacity: 1;
     pointer-events: auto;
 }
-
 .login.show .popup-content {
-    transform: translate(-50%, 0);
-}
-
-.signin.show .popup-content {
     transform: translate(-50%, 0);
 }
 
@@ -135,10 +61,12 @@ main {
     pointer-events: none;
     transition: opacity 0.4s ease;
 }
-
 .signin.show{
     opacity: 1;
     pointer-events: auto;
+}
+.signin.show .popup-content {
+    transform: translate(-50%, 0);
 }
 
 .popup-content {
@@ -147,13 +75,179 @@ main {
     left: 50%;
     transform: translate(-50%, 100%);
     transition: transform 0.4s ease;
-    background: white;
     padding: 20px;
     width: 50%;
     height: 30%;
     border-radius: 30px 30px 0 0;
-    border: #ec9c04 2px solid;
+    border: #FBC90E 2px solid;
     background-color: #2a2e34;
     
 }
 
+.sidebar{
+    position: fixed;
+    overflow-y: auto;
+    top: 120px;
+    left: 0;
+    width: 350px;
+    height: calc(100% - 120px);
+    background-color: #161412;
+    border-right: 2px solid #FBC90E;
+    padding-top: 20px;
+}
+.sidebar-content{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.navigation-part{    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+.nav-links{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+.nav-link {
+    color: #FBC90E;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+.nav-link:hover {
+    color: #FBC90E;
+    text-shadow: 0 0 5px #FBC90E,
+                 0 0 10px #FBC90E,  
+                 0 0 20px #FBC90E;
+}
+.nav-link.active {
+    text-decoration: underline;
+}
+.search-part{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px ;
+}
+.search{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    height: 60px;
+}
+.status-search{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+main {
+    margin-top: 140px;
+    margin-left: 370px;
+    display: flex;
+    justify-content: center;
+}
+
+body{
+    margin: 0; 
+    padding: 0;
+    background-color: #0a0907;
+}
+
+.text{
+    font-family: 'Poppins', sans-serif;
+    color: #FBC90E;
+    font-size: 18px;
+}
+
+.button-style {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #FBC90E;
+    background-color: #0a0907;
+    border: 2px solid #FBC90E;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+.button-style:hover {
+    background-color: #FBC90E;
+    color: #0a0907;
+    box-shadow: 0 0 5px  #FBC90E,
+                0 0 10px #FBC90E,
+                0 0 20px #FBC90E;
+}
+.image-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+.image-button:hover {
+    filter: drop-shadow(0 0 5px #FBC90E)
+            drop-shadow(0 0 10px #FBC90E)
+            drop-shadow(0 0 20px #FBC90E);
+}
+.button-image{ 
+    width: 36px;
+    height: 36px;
+}
+
+
+.input-style {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #FBC90E;  
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #FBC90E;
+    background-color: #0a0907;
+    transition: all 0.3s ease;
+}
+.input-style::placeholder {
+    color: #FBC90E;
+}
+.input-style:focus {
+    outline: none;
+    background-color: #816f0a;
+}
+
+.container{
+    background-color: #0a0907;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    width: 90%;
+}
+
+.item{
+    height: 500px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0c0c0c;
+    color: #FBC90E;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.item:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #FBC90E,
+                0 0 20px #FBC90E,
+                0 0 30px #FBC90E;
+}
+
+.big{
+    font-size: 24px;
+}
