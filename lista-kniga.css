@@ -1,0 +1,406 @@
+/* HEADER */
+header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: #161412;
+    border-bottom: 2px solid #E8B84B;
+    z-index: 1000;
+}
+.logo-container{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    height: 70%;
+    cursor: pointer;
+}
+
+.logo-container .logo{
+    height: 100%;
+    width: auto;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    gap:10px;
+    margin-right: 20px;
+}
+
+/* LOGIN I SIGNUP */
+.login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+.login.show{
+    opacity: 1;
+    pointer-events: auto;
+}
+.login.show .popup-content {
+    transform: translate(-50%, 0);
+}
+
+.signin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+.signin.show{
+    opacity: 1;
+    pointer-events: auto;
+}
+.signin.show .popup-content {
+    transform: translate(-50%, 0);
+}
+
+.popup-content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    transition: transform 0.4s ease;
+    padding: 20px;
+    width: 50%;
+    height: 30%;
+    border-radius: 30px 30px 0 0;
+    border: #E8B84B 2px solid;
+    background-color: #2a2e34;
+    
+}
+
+/* NAVIGACIJA*/
+.sidebar{
+    position: fixed;
+    overflow-y: auto;
+    top: 120px;
+    left: 0;
+    width: 350px;
+    height: calc(100% - 120px);
+    background-color: #161412;
+    border-right: 2px solid #E8B84B;
+    padding-top: 20px;
+}
+.sidebar-content{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.navigation-part{    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+.filteri-part{    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+    gap: 10px;
+}
+
+.nav-links{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+.nav-link {
+    color: #E8B84B;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+.nav-link:hover {
+    color: #E8B84B;
+    text-shadow: 0 0 5px #E8B84B,
+                 0 0 10px #E8B84B,  
+                 0 0 20px #E8B84B;
+}
+
+.nav-link.active {
+    text-decoration: underline;
+}
+
+/* PRETRAGA */
+.search-part{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px ;
+}
+.search{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    height: 60px;
+}
+.status-search{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+/* GLAVNI DEO ZA SEARCH I KNJIGE */
+main {
+    margin-top: 140px;
+    margin-left: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body{
+    margin: 0; 
+    padding: 0;
+    background-color: #0a0907;
+}
+
+.text{
+    font-family: 'Poppins', sans-serif;
+    color: #E8B84B;
+    font-size: 18px;
+}
+
+.book-grid-title{
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+    color: #E8B84B;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    line-height: 2;
+}
+
+.button-style {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #E8B84B;
+    background-color: #0a0907;
+    border: 2px solid #E8B84B;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+.button-style:hover {
+    background-color: #E8B84B;
+    color: #0a0907;
+    box-shadow: 0 0 5px  #E8B84B,
+                0 0 10px #E8B84B,
+                0 0 20px #E8B84B;
+}
+.image-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+.image-button:hover {
+    filter: drop-shadow(0 0 5px #E8B84B)
+            drop-shadow(0 0 10px #E8B84B)
+            drop-shadow(0 0 20px #E8B84B);
+}
+.button-image{ 
+    width: 36px;
+    height: 36px;
+}
+
+.input-style {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #E8B84B;  
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #E8B84B;
+    background-color: #0a0907;
+    transition: all 0.3s ease;
+}
+.input-style::placeholder {
+    color: #E8B84B;
+}
+.input-style:focus {
+    outline: none;
+    background-color: #816f0a;
+}
+
+.container{
+    background-color: #0a0907;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 90%;
+}
+
+.item{
+    height: 500px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0c0c0c;
+    color: #E8B84B;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.item:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #E8B84B,
+                0 0 20px #E8B84B,
+                0 0 30px #E8B84B;
+}
+
+.big{
+    font-size: 24px;
+}
+
+/* ===== HERO PRETRAGA ===== */
+.search-hero {
+     width: 90%;
+    margin: 0 auto 30px auto;
+    padding: 40px 30px;
+    background-color: transparent;        
+    border: none;                         
+    border-bottom: 2px solid #E8B84B;     
+    text-align: center;
+}
+
+.hero-title {
+    font-family: 'Poppins', sans-serif;
+    color: #E8B84B;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.highlight {
+    color: #ffffff;
+}
+
+.search-bar-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.search-input {
+    width: 60%;
+    height: 100%;
+}
+
+/* ===== BOOK ITEMS ===== */
+.book-image {
+    width: 100%;
+    max-width: 150px;
+    aspect-ratio: 2/3;
+    object-fit: scale-down;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0c0c0c;
+    color: #E8B84B;
+    border: 1px solid #E8B84B;
+    border-radius: 5px;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.book-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px #E8B84B,
+                0 0 20px #E8B84B;
+}
+.book-item p {
+    color: #E8B84B;
+    margin: 4px 0;
+}
+.name {
+    text-decoration: none;
+    color: #ffffff;
+}
+.name h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+/* ===== DROPDOWN FILTERI ===== */
+.filter-part {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.filter-group {
+    position: relative;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #161412;
+    border: 1px solid #E8B84B;
+    border-radius: 5px;
+    padding: 12px;
+    margin-top: 5px;
+}
+
+.dropdown-menu.open {
+    display: flex;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    accent-color: #E8B84B;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
