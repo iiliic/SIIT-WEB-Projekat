@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Књиге</title>
+    <link rel="stylesheet" href="lista-kniga.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER (LOGO, LOGIN I SIGNUP DUGMAD) -->
+<header>
+    <div class="logo-container" onclick="goToPage()">
+        <img src="content/Logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="header-right">
+        <button id="openLogin" class="button-style">Пријави  се</button>
+        <button id="openSignin" class="button-style">Региструј се</button>
+    </div>
+</header>
+
+<!-- LOGIN -->
+    <div class="login" id="login">
+        <div class="popup-content">
+            <form action="#" method="post">
+                <label for="login-ime" class="text">Име:</label>
+                <input type="text" id="login-ime" name="ime" class="input-style"><br>
+                <label for="login-lozinka" class="text">Лозинка:</label>
+                <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
+                <button type="submit" class="button-style">Пријави се</button>
+            </form>
+        <button id="closeLogin" class="button-style">Затвори</button>
+        </div>
+    </div>
+<!-- SINGUP -->
+    <div class="signin" id="signin">
+        <div class="popup-content">
+            <form action="#" method="post">
+                <label for="signin-ime" class="text">Име:</label>
+                <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+                <label for="signin-lozinka" class="text">Лозинка:</label>
+                <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+                <button type="submit" class="button-style">Региструј се</button>
+            </form>
+        <button id="closeSignin" class="button-style">Затвори</button>
+        </div>
+    </div>
+
+<!-- SIDEBAR NAVIGACIJA -->
+<div class="sidebar">
+    <div class="sidebar-content">
+            <div class="navigation-part">
+                <p class="text big">Навигација</p>
+                <div class="nav-links">
+                    <a href="profil.html" class="nav-link">➜ Профил</a>
+                    <a href="lista-knjiga.html" class="nav-link active">➜ Књиге</a>
+                    <a href="lista-autora.html" class="nav-link">➜ Аутори</a>
+                </div>
+            </div>
+
+        <!--FILTRI -->
+        <div class="filteri-part">
+            <p class="text big">Филтери књига</p>
+            <!-- DROPDOWN ZA ZANR -->
+            <div class="filteri-group">
+                <button class="dropdown-toggle button-style" onclick="toggleDropdown('zanr-dropdown')">Жанр ▾</button>
+
+                <div class="dropdown-menu" id="zanr-dropdown">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="zanr-domaći-autori" value="Domaći autori">
+                        <label for="zanr-domaći-autori" class="text">Домаћи аутори</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="zanr-drama" value="Drama">
+                        <label for="zanr-drama" class="text">Драма</label>
+                    </div>  
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="zanr-istorijski" value="Istorijski">
+                        <label for="zanr-istorijski" class="text">Историјски</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="zanr-trileri" value="Trileri">
+                        <label for="zanr-trileri" class="text">Трилери</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="zanr-romantika" value="Romantika">
+                        <label for="zanr-romantika" class="text">Романтика</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="zanr-naučna-fantastika" value="Naučna fantastika">
+                        <label for="zanr-naučna-fantastika" class="text">Научна фантастика</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="zanr-nauka" value="Nauka">
+                        <label for="zanr-nauka" class="text">Наука</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="zanr-klasici" value="Klasici">
+                        <label for="zanr-klasici" class="text">Класици</label>
+                    </div>
+                </div>
+            </div>
+            <!-- DROPDOWN ZA FORMAT -->
+            <div class="filteri-group">
+                <button class="dropdown-toggle button-style" onclick="toggleDropdown('format-dropdown')">Формат ▾</button>
+                <div class="dropdown-menu" id="format-dropdown">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="format-tvrdi" value="Tvrdi povez">
+                        <label for="format-tvrdi" class="text">Тврди повез</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="format-meki" value="Meki povez">
+                        <label for="format-meki" class="text">Меки повез</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="format-eknjiga" value="E-knjiga">
+                        <label for="format-eknjiga" class="text">Е-књига</label>
+                    </div>
+                </div>
+            </div>
+            </div>   
+        </div>
+    </div>
+</div>
+
+
+<main>
+    <!-- DEO ZA SEARCH -->
+    <div class="search-hero">
+        <h1 class="hero-title">Откриј своју <span class="highlight">следећу омиљену</span> књигу </h1>
+        <div class="search-bar-main">
+            <input type="text" id="pretraga" placeholder="Претражи по називу књиге..." class="input-style search-input">
+            <button class="image-button" onclick="pretraziKnjige()">
+                <img src="content/Search.png" alt="Претрага" class="button-image">
+            </button>
+        </div>
+    </div>
+
+    <!-- KNJIGE -->
+    <h1 class="book-grid-title">Каталог књига</h1>
+    <div class="container middle" id="booksGrid">
+        <button class="book-item">
+            <img src="content/slike-knjiga/ZiK.jpg" alt="Злочин и казна" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Злочин и казна</h3></a>
+            <a href="autor.html" class="name"><p>Фјодор Достојевски</p></a>
+            <p>Роман - Меки повез</p>
+            <p>Cena: 1000 RSD</p>
+        </button>
+       <button class="book-item">
+            <img src="content/slike-knjiga/dina.jpg" alt="Дина" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Дина</h3></a>
+            <a href="autor.html" class="name"><p>Френк Херберт</p></a>
+            <p>Научна фантастика - Тврди повез</p>
+            <p>Cena: 1067 RSD</p>
+        </button>
+        <button class="book-item">
+            <img src="content/slike-knjiga/lee.jpg" alt="Убити птицу ругалицу" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Убити птицу ругалицу</h3></a>
+            <a href="autor.html" class="name"><p>Харпер Ли</p></a>
+            <p>Драма - Меки повез</p>
+            <p>Cena: 800 RSD</p>
+        </button>
+        <button class="book-item">
+            <img src="content/slike-knjiga/sapiens.jpg" alt="Сапијенс" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Сапијенс</h3></a>
+            <a href="autor.html" class="name"><p>Јувал Ноа Харарин</p></a>
+            <p>Наука - Тврди повез</p>
+            <p>Cena: 950 RSD</p>
+        </button>
+        <button class="book-item">
+            <img src="content/slike-knjiga/GiP.jpg" alt="Zlocin i Kazna" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Поносност и предрасуде</h3></a>
+            <a href="autor.html" class="name"><p>Џејн Остин</p></a>
+            <p>Романтика - Меки повез</p>
+            <p>Cena: 600 RSD</p>
+        </button>
+        <button class="book-item">
+            <img src="content/slike-knjiga/ZiK.jpg" alt="Zlocin i Kazna" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Злочин и казна</h3></a>
+            <a href="autor.html" class="name"><p>Фјодор Достојевски</p></a>
+            <p>Роман - Меки повез</p>
+            <p>Cena: 1000 RSD</p>
+        </button>
+       <button class="book-item">
+            <img src="content/slike-knjiga/ZiK.jpg" alt="Zlocin i Kazna" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Злочин и казна</h3></a>
+            <a href="autor.html" class="name"><p>Фјодор Достојевски</p></a>
+            <p>Роман - Меки повез</p>
+            <p>Cena: 1000 RSD</p>
+        </button>
+        <button class="book-item">
+            <img src="content/slike-knjiga/ZiK.jpg" alt="Zlocin i Kazna" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Злочин и казна</h3></a>
+            <a href="autor.html" class="name"><p>Фјодор Достојевски</p></a>
+            <p>Роман - Меки повез</p>
+            <p>Cena: 1000 RSD</p>
+        </button>
+        <button class="book-item">
+            <img src="content/slike-knjiga/ZiK.jpg" alt="Zlocin i Kazna" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Злочин и казна</h3></a>
+            <a href="autor.html" class="name"><p>Фјодор Достојевски</p></a>
+            <p>Роман - Меки повез</p>
+            <p>Cena: 1000 RSD</p>
+        </button>
+        <button class="book-item">
+            <img src="content/slike-knjiga/ZiK.jpg"" alt="Zlocin i Kazna" class="book-image">
+            <a href="knjiga.html" class="name"><h3>Злочин и казна</h3></a>
+            <a href="autor.html" class="name"><p>Фјодор Достојевски</p></a>
+            <p>Роман - Меки повез</p>
+            <p>Cena: 1000 RSD</p>
+        </button>
+    </div>
+</main>
+<script src="function.js"></script>
+<script>
+    function toggleDropdown(id) {
+    const menu = document.getElementById(id);
+    menu.classList.toggle('open');
+    }
+</script>
+</body>
+</html>
