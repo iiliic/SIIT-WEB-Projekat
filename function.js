@@ -20,7 +20,10 @@ closeSignin.onclick = () => {
   signin.classList.remove("show");
 };
 
-function goToPage() {
+function goToListaKnjiga() {
   window.location.href = "lista-knjiga.html";
 }
 
+function goToAutor() {
+  window.location.href = "autor.html";
+}
