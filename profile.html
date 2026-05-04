@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Аутори</title>
+    <link rel="stylesheet" href="shared-style.css">
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo-container" onclick="goToListaKnjiga()">
+        <img src="content/Logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="header-right">
+        <button id="openLogin" class="button-style">Пријави  се</button>
+        <button id="openSignin" class="button-style">Региструј се</button>
+    </div>
+</header>
+
+    <div class="login" id="login">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Пријава</p>
+                <button id="closeLogin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form action="#" method="post">
+                <div class="label-above-input">
+                    <label for="login-ime" class="text">Име:</label>
+                    <input type="text" id="login-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="login-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Пријави се</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="signin" id="signin">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Регистрација</p>
+                <button id="closeSignin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form action="#" method="post">
+                <div class="label-above-input">
+                    <label for="signin-ime" class="text">Име:</label>
+                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="signin-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Региструј се</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+<div class="sidebar">
+    <div class="sidebar-content">
+            <div class="navigation-part">
+                <p class="text big">Навигација</p>
+                <div class="nav-links">
+                    <a href="profile.html" class="nav-link active">➜ Профил</a>
+                    <a href="lista-knjiga.html" class="nav-link">➜ Књиге</a>
+                    <a href="admin-lista-knjiga.html" class="nav-link"> ➜ Админ књиге</a>
+                    <a href="author-list.html" class="nav-link">➜ Аутори</a>
+                    <a href="author-admin-list.html" class="nav-link"> ➜ Админ аутори</a>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<main>
+    <div class="profile-info-container">
+        <p class="text big"> Улогован као:</p>
+        <div class="profile-info">
+            <div class="info-element">
+                <p class="text">Корисничко име</p>
+                <p class="text faded">Imenko123</p>
+            </div>
+            <div class="info-element">
+                <p class="text">Име и Презиме</p>
+                <p class="text faded">Именко Презименовић</p>
+            </div>
+            <div class="info-element">
+                <p class="text">Имејл адреса</p>
+                <p class="text faded">svetskimegacar@gmail.com</p>
+            </div>
+             <div class="info-element">
+                <p class="text">Датум рођења:</p>
+                <p class="text faded">12.12.2012.</p>
+            </div>
+            <div class="info-element">
+                <p class="text">Адреса</p>
+                <p class="text faded">Неко место</p>
+            </div>
+            <div class="info-element">
+                <p class="text">Заниманје:</p>
+                <p class="text faded">Софтверски инжењер</p>
+            </div>
+        </div>
+    </div>
+    <div class="rating-and-review-container">
+        <div class="rating-container">
+            <div class="rating-title">
+                <p class="text big">Моје Оцене:</p>
+            </div>
+            <div class="rating">
+                <div class="rated">
+                    <a class="nav-link big" href="author.html">Шекспир</a>
+                </div>
+                <div class="stars">
+                    <div class="stars">
+                            <input type="radio" id="star5" name="rating1" value="5" disabled checked>
+                            <label for="star5">★</label>
+
+                            <input type="radio" id="star4" name="rating1" value="4" disabled>
+                            <label for="star4">★</label>
+
+                            <input type="radio" id="star3" name="rating1" value="3" disabled>
+                            <label for="star3">★</label>
+
+                            <input type="radio" id="star2" name="rating1" value="2" disabled>
+                            <label for="star2">★</label>
+
+                            <input type="radio" id="star1" name="rating1" value="1" disabled>
+                            <label for="star1">★</label>
+                        </div>
+                </div>
+            </div>
+            <div class="rating">
+                <div class="rated">
+                    <a class="nav-link big" href="author.html">Орвел</a>
+                </div>
+                <div class="stars">
+                    <div class="stars">
+                            <input type="radio" id="star5" name="rating2" value="5" disabled >
+                            <label for="star5">★</label>
+
+                            <input type="radio" id="star4" name="rating2" value="4" disabled>
+                            <label for="star4">★</label>
+
+                            <input type="radio" id="star3" name="rating2" value="3" disabled checked>
+                            <label for="star3">★</label>
+
+                            <input type="radio" id="star2" name="rating2" value="2" disabled>
+                            <label for="star2">★</label>
+
+                            <input type="radio" id="star1" name="rating2" value="1" disabled>
+                            <label for="star1">★</label>
+                        </div>
+                </div>
+            </div>
+            <div class="rating">
+                <div class="rated">
+                    <a class="nav-link big" href="author.html">Кафка</a>
+                </div>
+                <div class="stars">
+                    <div class="stars">
+                            <input type="radio" id="star5" name="rating3" value="5" disabled checked>
+                            <label for="star5">★</label>
+
+                            <input type="radio" id="star4" name="rating3" value="4" disabled>
+                            <label for="star4">★</label>
+
+                            <input type="radio" id="star3" name="rating3" value="3" disabled>
+                            <label for="star3">★</label>
+
+                            <input type="radio" id="star2" name="rating3" value="2" disabled>
+                            <label for="star2">★</label>
+
+                            <input type="radio" id="star1" name="rating3" value="1" disabled>
+                            <label for="star1">★</label>
+                        </div>
+                </div>
+            </div>
+            <div class="rating">
+                <div class="rated">
+                    <a class="nav-link big" href="author.html">Бајага</a>
+                </div>
+                <div class="stars">
+                    <div class="stars">
+                            <input type="radio" id="star5" name="rating4" value="5" disabled >
+                            <label for="star5">★</label>
+
+                            <input type="radio" id="star4" name="rating4" value="4" disabled>
+                            <label for="star4">★</label>
+
+                            <input type="radio" id="star3" name="rating4" value="3" disabled>
+                            <label for="star3">★</label>
+
+                            <input type="radio" id="star2" name="rating4" value="2" disabled checked>
+                            <label for="star2">★</label>
+
+                            <input type="radio" id="star1" name="rating4" value="1" disabled>
+                            <label for="star1">★</label>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-container">
+            <div class="review-title">
+                <p class="text big">Моје Рецензије:</p>
+            </div>
+            <div class="review">
+                <a class="nav-link big" href="knjiga.html">Злочин и казна</a>
+                <p class="text faded">Одлична књига, волим њену структуру и дубину карактера.</p>
+            </div>
+            <div class="review">
+                <a class="nav-link big" href="knjiga.html">1984</a>
+                <p class="text faded">Једна од најбољих антиутопија које сам икада прочитао, веома актуелна.</p>
+            </div>
+            <div class="review">
+                <a class="nav-link big" href="knjiga.html">Господар прстенова</a>
+                <p class="text faded">Епска прича са невероватним светом и ликовима, обожавам је.</p>
+            </div>
+            <div class="review">
+                <a class="nav-link big" href="knjiga.html">Чудесни Спајдермен 1</a>
+                <p class="text faded">Врло занимљива прича са одличним акцијама и развојем карактера.</p>
+            </div>
+        </div>
+
+</main>
+<script src="function.js"></script>
+</body>
+</html>

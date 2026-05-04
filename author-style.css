@@ -18,8 +18,8 @@
     background-color: #161412;
     display: flex;
     flex-direction: column;
-    border: 2px solid #E8B84B;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .author-main{
@@ -74,6 +74,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     background-color: #161412;
 }
 
@@ -125,7 +126,6 @@
     width: 90%;
     padding: 40px;
     background-color: #161412;
-    border: 2px solid #E8B84B;
     border-radius: 5px;
 }
 .book-list{
