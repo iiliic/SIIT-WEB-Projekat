@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ пермисије</title>
+    <link rel="stylesheet" href="shared-style.css">
+    <link rel="stylesheet" href="admin-lista-knjiga.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo-container" onclick="goToListaKnjiga()">
+        <img src="content/Logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="header-right">
+        <button id="openLogin" class="button-style">Пријави  се</button>
+        <button id="openSignin" class="button-style">Региструј се</button>
+    </div>
+</header>
+
+    <div class="login" id="login">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Пријава</p>
+                <button id="closeLogin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form action="#" method="post">
+                <div class="label-above-input">
+                    <label for="login-ime" class="text">Име:</label>
+                    <input type="text" id="login-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="login-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Пријави се</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="signin" id="signin">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Регистрација</p>
+                <button id="closeSignin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form action="#" method="post">
+                <div class="label-above-input">
+                    <label for="signin-ime" class="text">Име:</label>
+                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="signin-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Региструј се</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-content">
+                <div class="navigation-part">
+                    <p class="text big">Навигација</p>
+                    <div class="nav-links">
+                        <a href="profile.html" class="nav-link">➜ Профил</a>
+                        <a href="lista-knjiga.html" class="nav-link">➜ Књиге</a>
+                        <a href="admin-lista-knjiga.html" class="nav-link active"> ➜ Админ књиге</a>
+                        <a href="author-list.html" class="nav-link">➜ Аутори</a>
+                        <a href="author-admin-list.html" class="nav-link "> ➜ Админ аутори</a>
+                    </div>
+                </div>
+
+            <div class="function-part">
+                <p class="text big">Опције</p>
+                    <div class="function-list">
+                        <button class="button-style">Додај</button>
+                        <button class="button-style">Измени</button>
+                        <button class="button-style">Обриши</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+<main>
+    <!-- DEO ZA SEARCH -->
+    <div class="search-hero">
+        <h1 class="hero-title">Претрага књига за промену</h1>
+        <div class="search-bar-main">
+            <input type="text" id="pretraga" placeholder="Претражи по називу књиге..." class="input-style search-input">
+            <button class="image-button" onclick="pretraziKnjige()">
+                <img src="content/Search.png" alt="Претрага" class="button-image">
+            </button>
+        </div>
+    </div>
+
+    <h1 class="all-books-title">Све књиге</h1>
+
+
+    <div class="table-container">
+    <!-- HEADER -->
+        <div class="table-header">
+            <div class="table-element"><p class="text">Назив</p></div>
+            <div class="table-element"><p class="text">Жанр</p></div>
+            <div class="table-element"><p class="text">Формат</p></div>
+            <div class="table-element"><p class="text">Цена</p></div>
+            <div class="table-element"><p class="text">Број страница</p></div>
+            <div class="table-element"><p class="text">ИД Аутора</p></div>
+            <div class="table-element"><p class="text">ISBN број</p></div>
+        </div>
+
+        <!-- REDOVI -->
+        <div class="table-row">
+            <div class="table-element"><p class="text">Злочин и казна</p></div>
+            <div class="table-element"><p class="text">Роман</p></div>
+            <div class="table-element"><p class="text">Меки повез</p></div>
+            <div class="table-element"><p class="text">980 RSD</p></div>
+            <div class="table-element"><p class="text">672</p></div>
+            <div class="table-element"><p class="text">a1</p></div>
+            <div class="table-element"><p class="text">978-86-7543-105-6</p></div>
+        </div>
+        <div class="table-row">
+            <div class="table-element"><p class="text">Злочин и казна</p></div>
+            <div class="table-element"><p class="text">Роман</p></div>
+            <div class="table-element"><p class="text">Меки повез</p></div>
+            <div class="table-element"><p class="text">980 RSD</p></div>
+            <div class="table-element"><p class="text">672</p></div>
+            <div class="table-element"><p class="text">a1</p></div>
+            <div class="table-element"><p class="text">978-86-7543-105-6</p></div>
+        </div>
+        <div class="table-row">
+            <div class="table-element"><p class="text">Злочин и казна</p></div>
+            <div class="table-element"><p class="text">Роман</p></div>
+            <div class="table-element"><p class="text">Меки повез</p></div>
+            <div class="table-element"><p class="text">980 RSD</p></div>
+            <div class="table-element"><p class="text">672</p></div>
+            <div class="table-element"><p class="text">a1</p></div>
+            <div class="table-element"><p class="text">978-86-7543-105-6</p></div>
+        </div>
+        <div class="table-row">
+            <div class="table-element"><p class="text">Злочин и казна</p></div>
+            <div class="table-element"><p class="text">Роман</p></div>
+            <div class="table-element"><p class="text">Меки повез</p></div>
+            <div class="table-element"><p class="text">980 RSD</p></div>
+            <div class="table-element"><p class="text">672</p></div>
+            <div class="table-element"><p class="text">a1</p></div>
+            <div class="table-element"><p class="text">978-86-7543-105-6</p></div>
+        </div>
+        <div class="table-row">
+            <div class="table-element"><p class="text">Злочин и казна</p></div>
+            <div class="table-element"><p class="text">Роман</p></div>
+            <div class="table-element"><p class="text">Меки повез</p></div>
+            <div class="table-element"><p class="text">980 RSD</p></div>
+            <div class="table-element"><p class="text">672</p></div>
+            <div class="table-element"><p class="text">a1</p></div>
+            <div class="table-element"><p class="text">978-86-7543-105-6</p></div>
+        </div>
+    </div>
+
+</main>
+
+<script src="function.js"></script>
+</body>
+</html>

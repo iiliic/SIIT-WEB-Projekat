@@ -40,7 +40,6 @@ body{
     aspect-ratio: 2/3;
     object-fit: cover;
     border-radius: 5px;
-    border: 1px solid #E8B84B;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
