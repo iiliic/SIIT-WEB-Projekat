@@ -21,28 +21,50 @@
 </header>
 
     <div class="login" id="login">
-        <div class="popup-content">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Пријава</p>
+                <button id="closeLogin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
             <form action="#" method="post">
-                <label for="login-ime" class="text">Име:</label>
-                <input type="text" id="login-ime" name="ime" class="input-style"><br>
-                <label for="login-lozinka" class="text">Лозинка:</label>
-                <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
-                <button type="submit" class="button-style">Пријави се</button>
+                <div class="label-above-input">
+                    <label for="login-ime" class="text">Име:</label>
+                    <input type="text" id="login-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="login-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Пријави се</button>
+                </div>
             </form>
-        <button id="closeLogin" class="button-style">Затвори</button>
+            </div>
         </div>
     </div>
 
     <div class="signin" id="signin">
-        <div class="popup-content">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Регистрација</p>
+                <button id="closeSignin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
             <form action="#" method="post">
-                <label for="signin-ime" class="text">Име:</label>
-                <input type="text" id="signin-ime" name="ime" class="input-style"><br>
-                <label for="signin-lozinka" class="text">Лозинка:</label>
-                <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
-                <button type="submit" class="button-style">Региструј се</button>
+                <div class="label-above-input">
+                    <label for="signin-ime" class="text">Име:</label>
+                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="signin-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Региструј се</button>
+                </div>
             </form>
-        <button id="closeSignin" class="button-style">Затвори</button>
+            </div>
         </div>
     </div>
 
@@ -51,18 +73,22 @@
             <div class="navigation-part">
                 <p class="text big">Навигација</p>
                 <div class="nav-links">
-                    <a href="profil.html" class="nav-link">➜ Профил</a>
+                    <a href="profile.html" class="nav-link">➜ Профил</a>
                     <a href="lista-knjiga.html" class="nav-link">➜ Књиге</a>
-                    <a href="lista-autora.html" class="nav-link active">➜ Аутори</a>
+                    <a href="author-list.html" class="nav-link active">➜ Аутори</a>
                 </div>
             </div>
         <div class="search-part">
             <p class="text big">Претрага аутора</p>
             <form action="#" method="get">
-                <label for="pretraga" class="text">Претражи по имену:</label>
-                <div class="search">
-                    <input type="text" id="pretraga" name="pretraga" placeholder="Унеси име или презиме" class="input-style">
-                    <button type="submit" class="image-button"><img src="content/Search.png" alt="Претрага" class="button-image"></button>
+                <div class="name-search">
+                    <div class="label-above-input">
+                        <label for="pretraga" class="text">Претражи по имену:</label>
+                        <div class="search-bar">
+                            <input type="text" id="pretraga" name="pretraga" placeholder="Унеси име или презиме" class="input-style">
+                            <button type="submit" class="image-button"><img src="content/Search.png" alt="Претрага" class="button-image"></button>
+                        </div>
+                    </div>
                 </div>
                     <p class="text">Филтрирај по статусу:</p>
                 <div class="status-search">
@@ -87,35 +113,38 @@
 
 
 <main>
+    <div class="banner">
+        <p class="banner-text">Упознајте оне који <span class="highlight">стварају</span></p>
+    </div>
+
     <div class="container ">
         <button onclick="goToAutor()" class="item">
             <div class="item-image-container">
                 <img src="content/Image.jpg" alt="Аутор" class="item-image">
             </div>
-            <div class="item-text">
-                <h2 class="text">Име и презиме аутора</h2>
-                <p class="text">Кратак опис аутора</p>
+            <div class="item-text-container">
+                <div class="item-top-text">
+                    <div class="item-element">
+                        <p class="text big">Име и презиме</p>
+                    </div>
+                    <div class="item-element">
+                        <p class="text">Датум рођења</p>
+                    </div>
+                    <div class="item-element">
+                        <p class="text">Статус</p>
+                    </div>
+                    <div class="item-element">
+                        <p class="text">Написано</p>
+                    </div>
+                    <div class="item-element">
+                        <p class="text">Награде</p>
+                    </div>
+                </div>
+                <div class="item-description-text">
+                    <p class="text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
             </div>
         </button>
-        <button onclick="goToAutor()" class="item">
-            <div class="item-image-container">
-                <img src="content/Image.jpg" alt="Аутор" class="item-image">
-            </div>
-            <div class="item-text">
-                <h2 class="text">Име и презиме аутора</h2>
-                <p class="text">Кратак опис аутора</p>
-            </div>
-        </button>
-        <button onclick="goToAutor()" class="item">
-            <div class="item-image-container">
-                <img src="content/Image.jpg" alt="Аутор" class="item-image">
-            </div>
-            <div class="item-text">
-                <h2 class="text">Име и презиме аутора</h2>
-                <p class="text">Кратак опис аутора</p>
-            </div>
-        </button>
-        
     </div>
 
 </main>
