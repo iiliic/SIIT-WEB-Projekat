@@ -31,3 +31,29 @@ function goToBook() {
 function goToAutor() {
   window.location.href = "author.html";
 }
+
+
+
+var items = document.querySelectorAll(".item");
+
+function handleClick(event) {
+  var clickedItem = event.target;
+
+  removeSelection();
+
+  clickedItem.classList.add("selected");
+}
+
+function removeSelection() {
+  for (var i = 0; i < items.length; i++) {
+    items[i].classList.remove("selected");
+  }
+}
+
+function init() {
+  for (var i = 0; i < items.length; i++) {
+    items[i].addEventListener("click", handleClick);
+  }
+}
+
+init();
