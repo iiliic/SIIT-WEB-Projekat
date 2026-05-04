@@ -22,28 +22,51 @@
 
 <!-- LOGIN -->
     <div class="login" id="login">
-        <div class="popup-content">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Пријава</p>
+                <button id="closeLogin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
             <form action="#" method="post">
-                <label for="login-ime" class="text">Име:</label>
-                <input type="text" id="login-ime" name="ime" class="input-style"><br>
-                <label for="login-lozinka" class="text">Лозинка:</label>
-                <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
-                <button type="submit" class="button-style">Пријави се</button>
+                <div class="label-above-input">
+                    <label for="login-ime" class="text">Име:</label>
+                    <input type="text" id="login-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="login-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Пријави се</button>
+                </div>
             </form>
-        <button id="closeLogin" class="button-style">Затвори</button>
+            </div>
         </div>
     </div>
+    
 <!-- SINGUP -->
     <div class="signin" id="signin">
-        <div class="popup-content">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Регистрација</p>
+                <button id="closeSignin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
             <form action="#" method="post">
-                <label for="signin-ime" class="text">Име:</label>
-                <input type="text" id="signin-ime" name="ime" class="input-style"><br>
-                <label for="signin-lozinka" class="text">Лозинка:</label>
-                <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
-                <button type="submit" class="button-style">Региструј се</button>
+                <div class="label-above-input">
+                    <label for="signin-ime" class="text">Име:</label>
+                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="signin-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Региструј се</button>
+                </div>
             </form>
-        <button id="closeSignin" class="button-style">Затвори</button>
+            </div>
         </div>
     </div>
 
