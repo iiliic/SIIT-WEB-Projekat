@@ -1,0 +1,75 @@
+.profile-info-container{
+    width: 90%;
+    background-color: #161412;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+}
+.profile-info{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr; 
+    gap: 1px;
+    background-color: #E8B84B;
+}
+
+.info-element{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #161412;
+}
+
+.rating-and-review-container{
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 90%;
+    margin-top: 20px;
+}
+.rating-container{
+    background-color: #161412;
+    border-radius: 5px;
+}
+.rating-title{
+    text-align: center;
+    padding: 20px;
+}
+.rating{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    text-align: center;
+    align-items: flex-end;
+    border-bottom: 1px solid #E8B84B;
+    padding: 10px;
+}
+.rating:last-child{
+    border-bottom: none;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row-reverse; /* important trick */
+    justify-content: center;
+    flex: 1;
+}
+.stars input {
+    display: none;
+}
+.stars label {
+    font-size: 40px;
+    color: none;
+    -webkit-text-stroke: 1px #E8B84B;
+}
+.stars input:checked ~ label {
+    color: #E8B84B;
+}
+
+.review-container{
+    background-color: #161412;
+}
