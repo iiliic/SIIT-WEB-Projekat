@@ -21,32 +21,54 @@
 </header>
 
 <!-- LOGIN -->
-<div class="login" id="login">
-    <div class="popup-content">
-        <form action="#" method="post">
-            <label for="login-ime" class="text">Ime:</label>
-            <input type="text" id="login-ime" name="ime" class="input-style"><br>
-            <label for="login-lozinka" class="text">Лозинка:</label>
-            <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
-            <button type="submit" class="button-style">Пријави се</button>
-        </form>
-        <button id="closeLogin" class="button-style">Затвори</button>
+    <div class="login" id="login">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Пријава</p>
+                <button id="closeLogin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form action="#" method="post">
+                <div class="label-above-input">
+                    <label for="login-ime" class="text">Име:</label>
+                    <input type="text" id="login-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="login-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Пријави се</button>
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
-</div>
 
 <!-- SIGNUP -->
 <div class="signin" id="signin">
-    <div class="popup-content">
-        <form action="#" method="post">
-            <label for="signin-ime" class="text">Ime:</label>
-            <input type="text" id="signin-ime" name="ime" class="input-style"><br>
-            <label for="signin-lozinka" class="text">Лозинка:</label>
-            <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
-            <button type="submit" class="button-style">Региструј се</button>
-        </form>
-        <button id="closeSignin" class="button-style">Затвори</button>
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Регистрација</p>
+                <button id="closeSignin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form action="#" method="post">
+                <div class="label-above-input">
+                    <label for="signin-ime" class="text">Име:</label>
+                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="signin-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Региструј се</button>
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
-</div>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
@@ -56,7 +78,7 @@
             <div class="nav-links">
                 <a href="profil.html" class="nav-link">➜ Профил</a>
                 <a href="lista-knjiga.html" class="nav-link">➜ Књиге</a>
-                <a href="lista-autora.html" class="nav-link">➜ Аутори</a>
+                <a href="author-list.html" class="nav-link">➜ Аутори</a>
             </div>
         </div>
     </div>
@@ -70,7 +92,7 @@
 
         <div class="knjiga-info">
             <h1 class="knjiga-naziv">Злочин и казна</h1>
-            <p class="knjiga-autor">Аутор: <a href="autor.html" class="autor-link">Фјодор Достојевски</a></p>
+            <p class="knjiga-autor">Аутор: <a href="author.html" class="autor-link">Фјодор Достојевски</a></p>
 
             <div class="knjiga-detalji">
                 <div class="detalj">
