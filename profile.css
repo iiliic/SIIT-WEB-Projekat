@@ -73,3 +73,23 @@
 .review-container{
     background-color: #161412;
 }
+
+.review-container{
+    background-color: #161412;
+    border-radius: 5px;
+}
+
+.review-title{
+    text-align: center;
+    padding: 20px;
+}
+.review {
+    padding: 15px 20px;
+    border-bottom: 1px solid #E8B84B;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.review:last-child {
+    border-bottom: none;
+}
