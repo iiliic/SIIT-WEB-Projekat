@@ -107,7 +107,7 @@ header {
     background-color: #161412;
     border-right: 2px solid #E8B84B;
     padding-top: 20px;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
 }
 .sidebar-content{
     display: flex;
@@ -244,7 +244,7 @@ p{
 }
 .faded{
     
-    color: #96711a;
+    color: #816f0a;
 }
 
 .thick{

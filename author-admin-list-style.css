@@ -54,6 +54,9 @@
                 0 0 20px #E8B84B,
                 0 0 30px #E8B84B;
 }
+.item.selected{
+    background-color: #816f0a;
+}
 
 .item-element{
     flex:1;
@@ -69,5 +72,5 @@
 }
 
 .table-header .item-element{
-    background-color: #96711a;
+    background-color: #816f0a;
 }
