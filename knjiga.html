@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Злочин и казна</title>
+    <link rel="stylesheet" href="shared-style.css">
+    <link rel="stylesheet" href="knjiga.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo-container" onclick="goToPage()">
+        <img src="content/Logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="header-right">
+        <button id="openLogin" class="button-style">Пријави се</button>
+        <button id="openSignin" class="button-style">Региструј се</button>
+    </div>
+</header>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+    <div class="popup-content">
+        <form action="#" method="post">
+            <label for="login-ime" class="text">Ime:</label>
+            <input type="text" id="login-ime" name="ime" class="input-style"><br>
+            <label for="login-lozinka" class="text">Лозинка:</label>
+            <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
+            <button type="submit" class="button-style">Пријави се</button>
+        </form>
+        <button id="closeLogin" class="button-style">Затвори</button>
+    </div>
+</div>
+
+<!-- SIGNUP -->
+<div class="signin" id="signin">
+    <div class="popup-content">
+        <form action="#" method="post">
+            <label for="signin-ime" class="text">Ime:</label>
+            <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+            <label for="signin-lozinka" class="text">Лозинка:</label>
+            <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+            <button type="submit" class="button-style">Региструј се</button>
+        </form>
+        <button id="closeSignin" class="button-style">Затвори</button>
+    </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="sidebar-content">
+        <div class="navigation-part">
+            <p class="text big">Навигација</p>
+            <div class="nav-links">
+                <a href="profil.html" class="nav-link">➜ Профил</a>
+                <a href="lista-knjiga.html" class="nav-link">➜ Књиге</a>
+                <a href="lista-autora.html" class="nav-link">➜ Аутори</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <!-- SLIKA I INFO -->
+    <a href="lista-knjiga.html" class="text" id="back-link">← Назад на каталог</a> 
+    <div class="knjiga-hero">
+        <img src="content/slike-knjiga/ZiK.jpg" alt="Злочин и казна" class="knjiga-cover">
+
+        <div class="knjiga-info">
+            <h1 class="knjiga-naziv">Злочин и казна</h1>
+            <p class="knjiga-autor">Аутор: <a href="autor.html" class="autor-link">Фјодор Достојевски</a></p>
+
+            <div class="knjiga-detalji">
+                <div class="detalj">
+                    <span class="detalj-label">Жанр</span>
+                    <span class="detalj-value">Роман</span>
+                </div>
+                <div class="detalj">
+                    <span class="detalj-label">Формат</span>
+                    <span class="detalj-value">Меки повез</span>
+                </div>
+                <div class="detalj">
+                    <span class="detalj-label">Број страна</span>
+                    <span class="detalj-value">672</span>
+                </div>
+                <div class="detalj">
+                    <span class="detalj-label">ISBN</span>
+                    <span class="detalj-value">978-86-7543-105-6</span>
+                </div>
+                <div class="detalj">
+                    <span class="detalj-label">Цена</span>
+                    <span class="detalj-value cena">980 RSD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPIS -->
+    <div class="knjiga-opis">
+        <h2 class="section-title">О књизи</h2>
+        <p>Злочин и казна је роман руског писца Фјодора Достојевског, објављен 1866. године. Прича прати Родиона Раскољникова, сиромашног бившег студента у Санкт Петербургу, који планира и извршава убиство зеленашице коју сматра бескорисном и штетном за друштво.</p>
+        <p>Роман истражује психолошке последице злочина и морална питања о природи греха, кривице и откупљења. Сматра се једним од највећих романа свих времена и кључним делом руске и светске književnosti.</p>
+    </div>
+
+    <!-- DEO ZA RECENZIJE -->
+    <div class="recenzije-sekcija">
+        <h2 class="section-title">Рецензије</h2>
+
+        <!-- FORMA -->
+        <div class="recenzija-forma">
+            <h3 class="text">Остави рецензију</h3>
+            <form action="#" method="post">
+                <textarea id="recenzija-tekst" name="tekst" placeholder="Напиши своју рецензију..." class="input-style recenzija-input"></textarea>
+                <button type="submit" class="button-style">Пошаљи рецензију</button>
+            </form>
+        </div>
+
+        <!-- PREMADE RECENZIJE -->
+        <div class="recenzije-lista">
+            <div class="recenzija-item">
+                <div class="recenzija-header">
+                    <span class="recenzija-korisnik">Марко Марковић</span>
+                    <span class="recenzija-datum">15. јануар 2025.</span>
+                </div>
+                <p class="recenzija-tekst">Изванредна књига која те натера да размишљаш о моралу и природи човека. Достојевски је мајстор психолошког портретисања.</p>
+            </div>
+            <div class="recenzija-item">
+                <div class="recenzija-header">
+                    <span class="recenzija-korisnik">Јована Јовановић</span>
+                    <span class="recenzija-datum">3. март 2025.</span>
+                </div>
+                <p class="recenzija-tekst">Тешко штиво али вредно сваке странице. Раскољников је један од најкомплекснијих ликова у književnosti.</p>
+            </div>
+            <div class="recenzija-item">
+                <div class="recenzija-header">
+                    <span class="recenzija-korisnik">Никола Николић</span>
+                    <span class="recenzija-datum">20. април 2025.</span>
+                </div>
+                <p class="recenzija-tekst">Класик са разlogom. Препоручујем свима, иако захтева стрпљење на почетку.</p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script src="function.js"></script>
+</body>
+</html>
