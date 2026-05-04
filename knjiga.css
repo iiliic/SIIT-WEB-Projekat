@@ -31,6 +31,7 @@ body{
     align-items: flex-start;  
     padding-bottom: 30px;  
     padding-top: 15px;
+    border-bottom: 2px solid #E8B84B;
 }
 
 .knjiga-cover {
@@ -52,6 +53,8 @@ body{
 .knjiga-info {
     display: flex;
     flex-direction: column;
+    border-right: 2px solid #E8B84B;
+    padding-right: 30px;
 }
 
 .knjiga-naziv {
@@ -108,6 +111,7 @@ body{
     font-size: 15px;
     color: #E8B84B;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .cena {
@@ -116,9 +120,7 @@ body{
 
 /* ===== OPIS ===== */
 .knjiga-opis {
-    border-top: 2px solid #E8B84B;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    margin-top: 30px;
 }
 
 .knjiga-opis p {
@@ -141,7 +143,6 @@ body{
 
 /* ===== RECENZIJE ===== */
 .recenzije-sekcija {
-    border-top: 2px solid #E8B84B;
     padding-top: 30px;
     padding-bottom: 40px;
 }
