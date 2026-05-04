@@ -24,6 +24,10 @@ function goToListaKnjiga() {
   window.location.href = "lista-knjiga.html";
 }
 
+function goToBook() {
+  window.location.href = "knjiga.html"
+}
+
 function goToAutor() {
-  window.location.href = "autor.html";
+  window.location.href = "author.html";
 }

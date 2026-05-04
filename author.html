@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Аутори</title>
+    <link rel="stylesheet" href="shared-style.css">
+    <link rel="stylesheet" href="author-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo-container" onclick="goToListaKnjiga()">
+        <img src="content/Logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="header-right">
+        <button id="openLogin" class="button-style">Пријави  се</button>
+        <button id="openSignin" class="button-style">Региструј се</button>
+    </div>
+</header>
+
+    <div class="login" id="login">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Пријава</p>
+                <button id="closeLogin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form action="#" method="post">
+                <div class="label-above-input">
+                    <label for="login-ime" class="text">Име:</label>
+                    <input type="text" id="login-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="login-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Пријави се</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="signin" id="signin">
+        <div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Регистрација</p>
+                <button id="closeSignin" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form action="#" method="post">
+                <div class="label-above-input">
+                    <label for="signin-ime" class="text">Име:</label>
+                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+                </div>
+                <div class="label-above-input">
+                    <label for="signin-lozinka" class="text">Лозинка:</label>
+                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+                </div>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style">Региструј се</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+<div class="sidebar">
+    <div class="sidebar-content">
+            <div class="navigation-part">
+                <p class="text big">Навигација</p>
+                <div class="nav-links">
+                    <a href="profile.html" class="nav-link">➜ Профил</a>
+                    <a href="lista-knjiga.html" class="nav-link">➜ Књиге</a>
+                    <a href="author-list.html" class="nav-link active">➜ Аутори</a>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<main>
+    <div class="return-container">
+        <a href="author-list.html" class="return text big">&lt;- Назад на почетну страницу</a>
+    </div>
+    <div class="author-container">
+        <div class="author-main">
+            <div class="author-image-container">
+                <img src="content/slike-autora/sekspir.jpg" alt="Аутор" class="author-image">
+            </div>
+            <div class="author-text-container">
+                <div class="author-name">
+                    <p class="text huge thick">Вилијам Шекспир</p>
+                </div>
+                <div class="author-description">
+                    <p class="text big">О писцу:</p>
+                    <p class="text faded">Шекспир је енглески драматург и песник који се сматра једним од најважнијих писаца у историји књижевности. Његове драме и сонети истражују универзалне теме као што су љубав, моћ, издаја и људска природа. Дела попут Хамлета и Ромеа и Јулије и данас се изводе широм света и имају огроман културни утицај.</p>
+                </div>
+            </div>
+            <div class="author-stats-container">
+                <div class="stat">
+                    <p class="text">Рођен:</p>
+                    <p class="text">01.05.1999.</p>
+                </div>
+                <div class="stat">
+                    
+                    <p class="text">Статус:</p>
+                    <p class="text">Преминуо</p>
+                </div>
+                <div class="stat">
+                    
+                    <p class="text">Написано:</p>
+                    <p class="text">15</p>
+                </div>
+                <div class="stat">
+                    <p class="text">Награде:</p>
+                    <p class="text">3</p>
+                </div>
+            </div>
+            <div class="author-raiting-container">
+                <div class="rating-average">
+                    <p class="text big">Просечна оцена:</p>
+                    <p class="text ginormous thick">4.6</p>
+                </div>
+                <div class="rating">
+                    <p class="text">Остави оцену</p>
+                    <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="book-list-container">
+        <p class="text big thick">Дела:</p>
+        <div class="book-list">
+                <button onclick="goToBook()" class="book">
+                    <img src="content/slike-knjiga/dina.jpg" alt="Аутор" class="book-image">
+                    <div class="item-text-container">
+                        <p class="text">Dina</p>
+                    </div>
+                </button>
+                <button onclick="goToBook()" class="book">
+                    <img src="content/slike-knjiga/GiP.jpg" alt="Аутор" class="book-image">
+                    <div class="item-text-container">
+                        <p class="text">Гордост</p>
+                    </div>
+                </button>
+                <button onclick="goToBook()" class="book">
+                    <img src="content/slike-knjiga/lee.jpg" alt="Аутор" class="book-image">
+                    <div class="item-text-container">
+                        <p class="text">Убиј Птицу</p>
+                    </div>
+                </button>
+                <button onclick="goToBook()" class="book">
+                    <img src="content/slike-knjiga/sapiens.jpg" alt="Аутор" class="book-image">
+                    <div class="item-text-container">
+                        <p class="text">Сапијенс</p>
+                    </div>
+                </button>
+                <button onclick="goToBook()" class="book">
+                    <img src="content/slike-knjiga/ZiK.jpg" alt="Аутор" class="book-image">
+                    <div class="item-text-container">
+                        <p class="text">Злочин и казна</p>
+                    </div>
+                </button>
+                <button onclick="goToBook()" class="book">
+                    <img src="content/slike-knjiga/dina.jpg" alt="Аутор" class="book-image">
+                    <div class="item-text-container">
+                        <p class="text">Dina</p>
+                    </div>
+                </button>
+                <button onclick="goToBook()" class="book">
+                    <img src="content/slike-knjiga/dina.jpg" alt="Аутор" class="book-image">
+                    <div class="item-text-container">
+                        <p class="text">Dina</p>
+                    </div>
+                </button>
+                <button onclick="goToBook()" class="book">
+                    <img src="content/slike-knjiga/dina.jpg" alt="Аутор" class="book-image">
+                    <div class="item-text-container">
+                        <p class="text">Dina</p>
+                    </div>
+                </button>
+        </div>
+    </div>
+</main>
+
+<script src="function.js"></script>
+</body>
+</html>

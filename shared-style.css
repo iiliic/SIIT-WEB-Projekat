@@ -207,11 +207,12 @@ header {
 }
 
 main {
-    margin-top: 140px;
-    margin-left: 370px;
+    margin-top: 120px;
+    margin-left: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px
 }
 
 body{
@@ -238,7 +239,15 @@ p{
     font-size: 32px;
 }
 
+.ginormous{
+    font-size: 60px;
+}
 .faded{
     
     color: #96711a;
+}
+
+.thick{
+    font-weight: 700;
+    line-height: 1.3;
 }
