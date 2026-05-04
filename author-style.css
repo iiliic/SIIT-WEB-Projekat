@@ -136,6 +136,7 @@
     padding: 40px;
 }
 .book-image{
+    border-radius: 5px;
     width: 100%;
     aspect-ratio: 2/3;
     object-fit:cover;
