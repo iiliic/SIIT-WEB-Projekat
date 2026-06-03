@@ -1,5 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {getFirestore, collection, getDocs, doc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {goToAuthor} from "./function.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
@@ -13,10 +14,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
-
-function goToAutor(authorId) {
-  window.location.href = `author.html?id=${authorId}`;
-}
 
 async function loadAuthors() {
     const container = document.getElementById("authors-container");
@@ -32,7 +29,7 @@ async function loadAuthors() {
 function createAuthorCard(author) {
     const button = document.createElement("button");
     button.classList.add("item");
-    button.onclick = () => goToAutor(author.id);
+    button.onclick = () => goToAuthor(author.id);
     button.innerHTML = 
     `<div class="item-image-container">
         <img src="${author.slike[0]}" alt="Аутор" class="item-image">
