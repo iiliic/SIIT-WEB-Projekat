@@ -31,44 +31,44 @@ function createAuthorCard(author) {
     button.classList.add("item");
     button.onclick = () => goToAuthor(author.id);
     button.innerHTML = 
-    `<div class="item-image-container">
-        <img src="${author.slike[0]}" alt="Аутор" class="item-image">
-    </div>
-
-    <div class="item-text-container">
-
-        <div class="item-top-text">
-
-            <div class="item-element">
-                <p class="text big">${author.ime} ${author.prezime}</p>
-            </div>
-
-            <div class="item-element stacked">
-                <p class="text">Датум рођења:</p>
-                <p class="text">${author.datumRodjenja}</p>
-            </div>
-
-            <div class="item-element">
-                <p class="text">${author.status}</p>
-            </div>
-
-            <div class="item-element stacked">
-                <p class="text">Продато:</p>
-                <p class="text">${author.brojProdatihPrimeraka}</p>
-            </div>
-
-            <div class="item-element stacked">
-                <p class="text">Награде:</p>
-                <p class="text">${author.brojNagrada}</p>
-            </div>
-
+        `<div class="item-image-container">
+            <img src="${author.slike[0]}" alt="Аутор" class="item-image">
         </div>
 
-        <div class="item-description-text">
-            <p class="text faded">${author.biografija}</p>
-        </div>
+        <div class="item-text-container">
 
-    </div>`;
+            <div class="item-top-text">
+
+                <div class="item-element">
+                    <p class="text big">${author.ime} ${author.prezime}</p>
+                </div>
+
+                <div class="item-element stacked">
+                    <p class="text">Датум рођења:</p>
+                    <p class="text">${author.datumRodjenja}</p>
+                </div>
+
+                <div class="item-element">
+                    <p class="text">${author.status}</p>
+                </div>
+
+                <div class="item-element stacked">
+                    <p class="text">Продато:</p>
+                    <p class="text">${author.brojProdatihPrimeraka}</p>
+                </div>
+
+                <div class="item-element stacked">
+                    <p class="text">Награде:</p>
+                    <p class="text">${author.brojNagrada}</p>
+                </div>
+
+            </div>
+
+            <div class="item-description-text">
+                <p class="text faded">${author.biografija}</p>
+            </div>
+
+        </div>`;
 
     return button;
 }

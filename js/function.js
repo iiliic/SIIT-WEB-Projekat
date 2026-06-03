@@ -56,8 +56,6 @@ async function checkLogin(korisnickoIme, password) {
     const snapshot = await getDocs(q);
 
     if (snapshot.empty) {
-        console.log("User not found");
-        console.log("Username: " + korisnickoIme);
         return false;
     }
 

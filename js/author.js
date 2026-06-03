@@ -44,10 +44,7 @@ async function loadBooks() {
         const book = { id: doc.id, ...doc.data() };
         const card = createBookCard(book);
         container.appendChild(card);
-        console.log("Book loaded: " + book.naziv);
     });
-    
-        console.log("aa");
 }
 
 function createBookCard(book) {
