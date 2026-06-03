@@ -81,7 +81,29 @@ function addSignin() {
             </div>
         </div>
     </div>`;
-}  
+}
+
+function addSignout(){
+  const header= document.getElementById("header-right");
+  const button = document.createElement("button");
+  button.id = "openSignout";
+  button.className = "button-style";
+  button.textContent = "Одјави се";
+  header.appendChild(button);
+
+  document.body.innerHTML +=
+    `<div class="signout" id="signout">
+        <div class="popup-content-position">
+            <div class="popup-content">
+                <p class="text big">Да ли сте сигурни да желите да се одјавите?</p>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style" id="confirmSignout">Да</button>
+                    <button type="submit" class="button-style" id="cancelSignout">Не</button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
 
 function goToListaKnjiga() {
   window.location.href = "lista-knjiga.html";
@@ -91,16 +113,30 @@ function goToBook() {
   window.location.href = "knjiga.html"
 }
 
-function goToAutor(authorId) {
-  window.location.href = `author.html?id=${authorId}`;
-}
 
 function main(){
   if (sessionStorage.getItem("loginId")) {
-    console.log("loginId exists:", sessionStorage.getItem("loginId"));
+    addSignout();
+
+    const opensignout = document.getElementById("openSignout");
+    const confirmsignout = document.getElementById("confirmSignout");
+    const cancelsignout = document.getElementById("cancelSignout");
+
+    opensignout.onclick = () => {
+      signout.classList.add("show");
+    }
+
+    cancelsignout.onclick = () => {
+      signout.classList.remove("show");
+    }
+
+    confirmsignout.onclick = () => {
+      sessionStorage.removeItem("loginId");
+      signout.classList.remove("show");
+      location.reload();
+    }
   } 
   else {
-    console.log("no loginId found");
     addLogin();
     addSignin();
 

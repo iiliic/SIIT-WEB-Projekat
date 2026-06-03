@@ -14,6 +14,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 
+function goToAutor(authorId) {
+  window.location.href = `author.html?id=${authorId}`;
+}
+
 async function loadAuthors() {
     const container = document.getElementById("authors-container");
 
