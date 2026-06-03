@@ -91,35 +91,35 @@
     <div class="author-container">
         <div class="author-main">
             <div class="author-image-container">
-                <img src="content/slike-autora/sekspir.jpg" alt="Аутор" class="author-image">
+                <img src="" alt="Аутор" class="author-image" id="slika">
             </div>
             <div class="author-text-container">
                 <div class="author-name">
-                    <p class="text huge thick">Вилијам Шекспир</p>
+                    <p class="text huge thick" id="ime"></p>
                 </div>
                 <div class="author-description">
                     <p class="text big">О писцу:</p>
-                    <p class="text faded">Шекспир је енглески драматург и песник који се сматра једним од најважнијих писаца у историји књижевности. Његове драме и сонети истражују универзалне теме као што су љубав, моћ, издаја и људска природа. Дела попут Хамлета и Ромеа и Јулије и данас се изводе широм света и имају огроман културни утицај.</p>
+                    <p class="text faded" id="biografija"></p>
                 </div>
             </div>
             <div class="author-stats-container">
                 <div class="stat">
                     <p class="text">Рођен:</p>
-                    <p class="text faded">01.05.1999.</p>
+                    <p class="text faded" id="datumRodjenja"></p>
                 </div>
                 <div class="stat">
                     
                     <p class="text">Статус:</p>
-                    <p class="text faded">Преминуо</p>
+                    <p class="text faded" id="status"></p>
                 </div>
                 <div class="stat">
                     
-                    <p class="text">Написано:</p>
-                    <p class="text faded">15</p>
+                    <p class="text">Продато:</p>
+                    <p class="text faded" id="napisano"></p>
                 </div>
                 <div class="stat">
                     <p class="text">Награде:</p>
-                    <p class="text faded">3</p>
+                    <p class="text faded" id="nagrade"></p>
                 </div>
             </div>
             <div class="author-raiting-container">
@@ -205,5 +205,6 @@
 </main>
 
 <script src="function.js"></script>
+<script type="module" src="author.js"></script>
 </body>
 </html>

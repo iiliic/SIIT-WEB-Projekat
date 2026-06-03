@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDocs} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDocs, doc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
@@ -18,7 +18,6 @@ async function loadAuthors() {
     const container = document.getElementById("authors-container");
 
     const snapshot = await getDocs(collection(db, "autori"));
-    console.log(snapshot.size);
     snapshot.forEach((doc) => {
         const author = { id: doc.id, ...doc.data() };
         const card = createAuthorCard(author);
@@ -49,11 +48,11 @@ function createAuthorCard(author) {
             </div>
 
             <div class="item-element">
-                <p class="text">Преминуо</p>
+                <p class="text">${author.status}</p>
             </div>
 
             <div class="item-element stacked">
-                <p class="text">Написано:</p>
+                <p class="text">Продато:</p>
                 <p class="text">${author.brojProdatihPrimeraka}</p>
             </div>
 
