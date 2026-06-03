@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDoc, doc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDoc, getDocs, doc, query, where} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
@@ -31,7 +31,7 @@ function addLogin() {
                 <button id="closeLogin" class="button-style">X</button>
             </div>
             <div class="popup-content">
-            <form action="#" method="post">
+            <form id="loginForm">
                 <div class="label-above-input">
                     <label for="login-ime" class="text">Име:</label>
                     <input type="text" id="login-ime" name="ime" class="input-style"><br>
@@ -49,6 +49,47 @@ function addLogin() {
     </div>`;
 }  
 
+async function checkLogin(korisnickoIme, password) {
+
+    const q = query(collection(db, "korisnici"), where("korisnickoIme", "==", korisnickoIme));
+
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+        console.log("User not found");
+        console.log("Username: " + korisnickoIme);
+        return false;
+    }
+
+    const doc = snapshot.docs[0];
+    const user = doc.data();
+
+    return user.lozinka === password;
+}
+
+async function loginValidation(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("login-ime").value.trim();
+    const password = document.getElementById("login-lozinka").value.trim();
+
+    if (!username || !password) {
+        alert("Popuni sva polja");
+        return;
+    }
+
+    const answer = await checkLogin(username, password);
+
+    if (!answer) {
+        alert("Pogrešno korisničko ime ili lozinka");
+        return;
+    }
+
+    // LOGIN SUCCESS
+    sessionStorage.setItem("username", username);
+    location.reload();
+}
+
 function addSignin() {
   const header= document.getElementById("header-right");
   const button = document.createElement("button");
@@ -65,7 +106,7 @@ function addSignin() {
                 <button id="closeSignin" class="button-style">X</button>
             </div>
             <div class="popup-content">
-            <form action="#" method="post">
+            <form id="signinForm">
                 <div class="label-above-input">
                     <label for="signin-ime" class="text">Име:</label>
                     <input type="text" id="signin-ime" name="ime" class="input-style"><br>
@@ -105,17 +146,20 @@ function addSignout(){
     </div>`;
 }
 
-function goToListaKnjiga() {
+export function goToListaKnjiga() {
   window.location.href = "lista-knjiga.html";
 }
 
-function goToBook() {
-  window.location.href = "knjiga.html"
+export function goToBook(bookId) {
+  window.location.href = `knjiga.html?id=${bookId}`;
 }
 
+export function goToAuthor(authorId) {
+  window.location.href = `author.html?id=${authorId}`;
+}
 
 function main(){
-  if (sessionStorage.getItem("loginId")) {
+  if (sessionStorage.getItem("username")) {
     addSignout();
 
     const opensignout = document.getElementById("openSignout");
@@ -131,7 +175,7 @@ function main(){
     }
 
     confirmsignout.onclick = () => {
-      sessionStorage.removeItem("loginId");
+      sessionStorage.removeItem("username");
       signout.classList.remove("show");
       location.reload();
     }
@@ -162,7 +206,14 @@ function main(){
     closeSignin.onclick = () => {
       signin.classList.remove("show");
     };
+
+    const form = document.getElementById("loginForm");
+    form.addEventListener("submit", loginValidation);
   }
+
+  const logo = document.getElementById("logo-container");
+  logo.onclick = () => goToListaKnjiga();
+
 }
 
 main();

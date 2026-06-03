@@ -1,5 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDoc, doc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDoc, getDocs, doc, query, where} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {goToBook} from "./function.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
@@ -34,4 +35,33 @@ async function loadAuthor() {
     fill(data);
 }
 
+async function loadBooks() {
+    const container = document.getElementById("book-list");
+
+    const q = query(collection(db, "knjige"), where("idAutora", "==", authorId));
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => {
+        const book = { id: doc.id, ...doc.data() };
+        const card = createBookCard(book);
+        container.appendChild(card);
+        console.log("Book loaded: " + book.naziv);
+    });
+    
+        console.log("aa");
+}
+
+function createBookCard(book) {
+    const button = document.createElement("button");
+    button.classList.add("book");
+    button.onclick = () => goToBook(book.id);
+    button.innerHTML = 
+        `<img src="${book.slike[0]}" alt="Аутор" class="book-image">
+        <div class="item-text-container">
+            <p class="text">${book.naziv}</p>
+        </div>`;
+
+    return button;
+}
+
 loadAuthor();
+loadBooks();

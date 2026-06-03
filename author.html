@@ -10,63 +10,14 @@
 <body>
 
 <header>
-    <div class="logo-container" onclick="goToListaKnjiga()">
+    <div class="logo-container" id="logo-container">
         <img src="content/Logo.png" alt="Logo" class="logo">
     </div>
 
-    <div class="header-right">
-        <button id="openLogin" class="button-style">Пријави  се</button>
-        <button id="openSignin" class="button-style">Региструј се</button>
+    <div class="header-right" id="header-right">
     </div>
 </header>
 
-    <div class="login" id="login">
-        <div class="popup-content-position">
-            <div class="popup-header">
-                <p class="text huge">Пријава</p>
-                <button id="closeLogin" class="button-style">X</button>
-            </div>
-            <div class="popup-content">
-            <form action="#" method="post">
-                <div class="label-above-input">
-                    <label for="login-ime" class="text">Име:</label>
-                    <input type="text" id="login-ime" name="ime" class="input-style"><br>
-                </div>
-                <div class="label-above-input">
-                    <label for="login-lozinka" class="text">Лозинка:</label>
-                    <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
-                </div>
-                <div class="popup-button-container">
-                    <button type="submit" class="button-style">Пријави се</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="signin" id="signin">
-        <div class="popup-content-position">
-            <div class="popup-header">
-                <p class="text huge">Регистрација</p>
-                <button id="closeSignin" class="button-style">X</button>
-            </div>
-            <div class="popup-content">
-            <form action="#" method="post">
-                <div class="label-above-input">
-                    <label for="signin-ime" class="text">Име:</label>
-                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
-                </div>
-                <div class="label-above-input">
-                    <label for="signin-lozinka" class="text">Лозинка:</label>
-                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
-                </div>
-                <div class="popup-button-container">
-                    <button type="submit" class="button-style">Региструј се</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
 
 <div class="sidebar">
     <div class="sidebar-content">
@@ -151,55 +102,7 @@
     </div>
     <div class="book-list-container">
         <p class="text big thick">Дела:</p>
-        <div class="book-list">
-                <button onclick="goToBook()" class="book">
-                    <img src="content/slike-knjiga/dina.jpg" alt="Аутор" class="book-image">
-                    <div class="item-text-container">
-                        <p class="text">Dina</p>
-                    </div>
-                </button>
-                <button onclick="goToBook()" class="book">
-                    <img src="content/slike-knjiga/GiP.jpg" alt="Аутор" class="book-image">
-                    <div class="item-text-container">
-                        <p class="text">Гордост</p>
-                    </div>
-                </button>
-                <button onclick="goToBook()" class="book">
-                    <img src="content/slike-knjiga/lee.jpg" alt="Аутор" class="book-image">
-                    <div class="item-text-container">
-                        <p class="text">Убиј Птицу</p>
-                    </div>
-                </button>
-                <button onclick="goToBook()" class="book">
-                    <img src="content/slike-knjiga/sapiens.jpg" alt="Аутор" class="book-image">
-                    <div class="item-text-container">
-                        <p class="text">Сапијенс</p>
-                    </div>
-                </button>
-                <button onclick="goToBook()" class="book">
-                    <img src="content/slike-knjiga/ZiK.jpg" alt="Аутор" class="book-image">
-                    <div class="item-text-container">
-                        <p class="text">Злочин и казна</p>
-                    </div>
-                </button>
-                <button onclick="goToBook()" class="book">
-                    <img src="content/slike-knjiga/dina.jpg" alt="Аутор" class="book-image">
-                    <div class="item-text-container">
-                        <p class="text">Dina</p>
-                    </div>
-                </button>
-                <button onclick="goToBook()" class="book">
-                    <img src="content/slike-knjiga/dina.jpg" alt="Аутор" class="book-image">
-                    <div class="item-text-container">
-                        <p class="text">Dina</p>
-                    </div>
-                </button>
-                <button onclick="goToBook()" class="book">
-                    <img src="content/slike-knjiga/dina.jpg" alt="Аутор" class="book-image">
-                    <div class="item-text-container">
-                        <p class="text">Dina</p>
-                    </div>
-                </button>
+        <div class="book-list" id="book-list">
         </div>
     </div>
 </main>
