@@ -25,13 +25,60 @@ function fill(user){
 
 async function loadProfile() {
     const username= sessionStorage.getItem("username");
-    console.log("username: ", username);
     if (!username) {
         return;
     }
     const q = query(collection(db, "korisnici"), where("korisnickoIme", "==", username));
     const snapshot = await getDocs(q);
-    fill(snapshot.docs[0].data());
+    const korisnik = { id: snapshot.docs[0].id, ...snapshot.docs[0].data() };
+    fill(korisnik);
+    loadRatings(korisnik);
+    //TODO: ilija dodaj reviews.
+}
+
+async function loadRatings(korisnik) {
+    const q=query(collection(db, "ocene"), where("idKorisnika", "==", korisnik.id));
+    const snapshot = await getDocs(q);
+    const ratingContainer = document.getElementById("rating-container");
+    for (const ratingDoc of snapshot.docs) {
+
+        const rating = { id: ratingDoc.id, ...ratingDoc.data() };
+
+        const authorRef = doc(db, "autori", rating.idAutora);
+        const authorSnap = await getDoc(authorRef);
+        const author = authorSnap.data();
+
+        const ratingCard = createRatingCard(rating,author);
+        ratingContainer.appendChild(ratingCard);
+        
+        document.querySelector(`#stars-${rating.id} input[value="${rating.vrednost}"]`).checked = true;
+    }
+}
+
+function createRatingCard(rating,author) {
+    const ratingCard = document.createElement("div");
+    ratingCard.classList.add("rating");
+    ratingCard.innerHTML = `
+            <div class="rated">
+                <a class="nav-link big" href="author.html?id=${rating.idAutora}">${author.ime} ${author.prezime}</a>
+            </div>
+            <div class="stars" id="stars-${rating.id}">
+                <input type="radio" value="5" disabled>
+                <label for="star5">★</label>
+
+                <input type="radio" value="4" disabled>
+                <label for="star4">★</label>
+
+                <input type="radio" value="3" disabled>
+                <label for="star3">★</label>
+
+                <input type="radio" value="2" disabled>
+                <label for="star2">★</label>
+
+                <input type="radio" value="1" disabled>
+                <label for="star1">★</label>
+            </div>`;
+    return ratingCard;
 }
 
 loadProfile();
