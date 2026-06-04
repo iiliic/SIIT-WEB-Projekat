@@ -12,14 +12,14 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore();
+const db = getFirestore(app);
 
 const params = new URLSearchParams(window.location.search);
 const bookId = params.get("id");
 
-function fill(book) {
+async function fill(book) {
     document.getElementById("knjiga-naziv").textContent = book.naziv;
-    document.getElementById("knjiga-autor").textContent = book.idAutora;
+    document.getElementById("knjiga-autor").textContent = await getAutorIme(book.idAutora);
     document.getElementById("knjiga-autor").href = `author.html?id=${book.idAutora}`;
     document.getElementById("knjiga-zanr").textContent = book.zanr;
     document.getElementById("knjiga-format").textContent = book.format;
@@ -34,8 +34,12 @@ async function loadBook() {
     const docRef = doc(db, "knjige", bookId);
     const docSnap = await getDoc(docRef);
     const data = docSnap.data();
-    fill(data);
+    await fill(data);
 }
 
+async function getAutorIme(idAutora) {
+    const autorSnap = await getDoc(doc(db, "autori", idAutora));
+    return autorSnap.exists() ? `${autorSnap.data().ime} ${autorSnap.data().prezime}`  : "Nepoznat autor";
+}
 
 loadBook();

@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDocs, doc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDocs, doc, getDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import {goToBook} from "./function.js";
 
 const firebaseConfig = {
@@ -13,17 +13,19 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore();
+const db = getFirestore(app);
 
 async function loadBooks() {
     const container = document.getElementById("books-container");
 
     const snapshot = await getDocs(collection(db, "knjige"));
-    snapshot.forEach((doc) => {
-        const book = { id: doc.id, ...doc.data() };
+
+    for (const bookDoc of snapshot.docs) {
+        const book = { id: bookDoc.id, ...bookDoc.data() };
+        book.imeAutora = await getAutorIme(book.idAutora);
         const card = createBookCard(book);
         container.appendChild(card);
-    });
+}
 }
 
 function createBookCard(book) {
@@ -33,12 +35,17 @@ function createBookCard(book) {
     button.innerHTML = 
         `<img src="${book.slike[0]}" alt="knjiga" class="book-image">
         <h3 class="name">${book.naziv}</h3>
-        <p class="name">${book.idAutora}</p>
+        <p class="name">${book.imeAutora}</p>
         <p>${book.zanr} - ${book.format}</p>
         <p>Cena: ${book.cena} RSD</p>
         `;
 
     return button;
+}
+
+async function getAutorIme(idAutora) {
+    const autorSnap = await getDoc(doc(db, "autori", idAutora));
+    return autorSnap.exists() ? `${autorSnap.data().ime} ${autorSnap.data().prezime}`  : "Nepoznat autor";
 }
 
 loadBooks();
