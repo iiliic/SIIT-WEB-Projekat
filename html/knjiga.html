@@ -11,64 +11,13 @@
 
 <!-- HEADER -->
 <header>
-    <div class="logo-container" onclick="goToPage()">
+    <div class="logo-container" id="logo-container">
         <img src="../content/Logo.png" alt="Logo" class="logo">
     </div>
-    <div class="header-right">
-        <button id="openLogin" class="button-style">Пријави се</button>
-        <button id="openSignin" class="button-style">Региструј се</button>
+    <div class="header-right" id="header-right">
     </div>
 </header>
 
-<!-- LOGIN -->
-    <div class="login" id="login">
-        <div class="popup-content-position">
-            <div class="popup-header">
-                <p class="text huge">Пријава</p>
-                <button id="closeLogin" class="button-style">X</button>
-            </div>
-            <div class="popup-content">
-            <form action="#" method="post">
-                <div class="label-above-input">
-                    <label for="login-ime" class="text">Име:</label>
-                    <input type="text" id="login-ime" name="ime" class="input-style"><br>
-                </div>
-                <div class="label-above-input">
-                    <label for="login-lozinka" class="text">Лозинка:</label>
-                    <input type="password" id="login-lozinka" name="lozinka" class="input-style"><br>
-                </div>
-                <div class="popup-button-container">
-                    <button type="submit" class="button-style">Пријави се</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-
-<!-- SIGNUP -->
-<div class="signin" id="signin">
-        <div class="popup-content-position">
-            <div class="popup-header">
-                <p class="text huge">Регистрација</p>
-                <button id="closeSignin" class="button-style">X</button>
-            </div>
-            <div class="popup-content">
-            <form action="#" method="post">
-                <div class="label-above-input">
-                    <label for="signin-ime" class="text">Име:</label>
-                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
-                </div>
-                <div class="label-above-input">
-                    <label for="signin-lozinka" class="text">Лозинка:</label>
-                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
-                </div>
-                <div class="popup-button-container">
-                    <button type="submit" class="button-style">Региструј се</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
@@ -90,32 +39,32 @@
     <!-- SLIKA I INFO -->
     <a href="lista-knjiga.html" class="text" id="back-link">← Назад на каталог</a> 
     <div class="knjiga-hero">
-        <img src="content/slike-knjiga/ZiK.jpg" alt="Злочин и казна" class="knjiga-cover">
+        <img alt="Knjiga" class="knjiga-cover" id="knjiga-slika">
 
         <div class="knjiga-info">
-            <h1 class="knjiga-naziv">Злочин и казна</h1>
-            <p class="knjiga-autor">Аутор: <a href="author.html" class="autor-link">Фјодор Достојевски</a></p>
+            <h1 class="knjiga-naziv" id="knjiga-naziv"></h1>
+            <p class="knjiga-autor">Аутор: <a class="autor-link" id="knjiga-autor"></a></p>
 
             <div class="knjiga-detalji">
                 <div class="detalj">
                     <span class="detalj-label">Жанр</span>
-                    <span class="detalj-value">Роман</span>
+                    <span class="detalj-value" id="knjiga-zanr"></span>
                 </div>
                 <div class="detalj">
                     <span class="detalj-label">Формат</span>
-                    <span class="detalj-value">Меки повез</span>
+                    <span class="detalj-value" id="knjiga-format"></span>
                 </div>
                 <div class="detalj">
                     <span class="detalj-label">Број страна</span>
-                    <span class="detalj-value">672</span>
+                    <span class="detalj-value" id="knjiga-br-strana"></span>
                 </div>
                 <div class="detalj">
                     <span class="detalj-label">ISBN</span>
-                    <span class="detalj-value">978-86-7543-105-6</span>
+                    <span class="detalj-value" id="knjiga-isbn"></span>
                 </div>
                 <div class="detalj">
                     <span class="detalj-label">Цена</span>
-                    <span class="detalj-value cena">980 RSD</span>
+                    <span class="detalj-value cena" id="knjiga-cena"></span>
                 </div>
             </div>
         </div>
@@ -123,8 +72,7 @@
         <!-- OPIS -->
         <div class="knjiga-opis">
         <h2 class="section-title">О књизи</h2>
-        <p>Злочин и казна је роман руског писца Фјодора Достојевског, објављен 1866. године. Прича прати Родиона Раскољникова, сиромашног бившег студента у Санкт Петербургу, који планира и извршава убиство зеленашице коју сматра бескорисном и штетном за друштво.</p>
-        <p>Роман истражује психолошке последице злочина и морална питања о природи греха, кривице и откупљења. Сматра се једним од највећих романа свих времена и кључним делом руске и светске књижевности.</p>
+        <p id="knjiga-opis"></p>
         </div>
 
     </div>
@@ -183,6 +131,7 @@
 
 </main>
 
-<script src="function.js"></script>
+<script type="module" src="../js/function.js"></script>
+<script type="module" src="../js/knjiga.js"></script>
 </body>
 </html>

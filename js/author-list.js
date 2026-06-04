@@ -59,7 +59,7 @@ function createAuthorCard(author) {
 
                 <div class="item-element stacked">
                     <p class="text">Награде:</p>
-                    <p class="text">${author.brojNagrada}</p>
+                    <p class="text">${author.brojOsvojenihNagrada}</p>
                 </div>
 
             </div>
