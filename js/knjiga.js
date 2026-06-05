@@ -42,4 +42,37 @@ async function getAutorIme(idAutora) {
     return autorSnap.exists() ? `${autorSnap.data().ime} ${autorSnap.data().prezime}`  : "Nepoznat autor";
 }
 
+// RECENZIJE
+
+async function getKorisnikIme(idKorisnika) {
+    const snap = await getDoc(doc(db, "korisnici", idKorisnika));
+    return snap.exists() ? `${snap.data().ime} ${snap.data().prezime}` : idKorisnika;
+}
+
+async function loadRecenzije() {
+    const lista = document.querySelector(".recenzije-lista");
+
+    const q = query(collection(db, "recenzije"), where("idKnjige", "==", bookId));
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+        lista.innerHTML = `<p class="text">Нема рецензија за ову књигу.</p>`;
+        return;
+    }
+
+    for (const recDoc of snapshot.docs) {
+        const r = recDoc.data();
+        const imeKorisnika = await getKorisnikIme(r.idKorisnika);
+        const item = document.createElement("div");
+        item.classList.add("recenzija-item");
+        item.innerHTML = `
+            <div class="recenzija-header">
+                <span class="recenzija-korisnik">${imeKorisnika}</span>
+                <span class="recenzija-datum faded">${r.datum}</span>
+            </div>
+            <p class="recenzija-tekst">${r.tekst}</p>`;
+        lista.appendChild(item);
+    }
+}
 loadBook();
+loadRecenzije();

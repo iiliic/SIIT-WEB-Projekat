@@ -90,9 +90,36 @@ main {
 
 .table-row:hover {
     background-color: #161412;
-    transform: scale(1.05);
+   z-index: 10;
+    position: relative;
 }
 
 .table-element {
     padding: 5px 15px;
+}
+
+.table-element p {
+   white-space: normal;
+   word-break: break-word;
+}
+
+.table-header, .table-row {
+     display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
+    min-width: 900px;
+}
+
+.table-container {
+    width: 95%;
+    overflow-x: auto;
+}
+
+.table-row.selected {
+    background-color: #2a2000;
+    border-left: 5px solid #E8B84B;
+}
+
+#tableBody {
+    display: flex;
+    flex-direction: column;
 }
