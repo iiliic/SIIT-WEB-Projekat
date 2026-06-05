@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDoc, getDocs, doc, query, where} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDoc, getDocs, doc, query, where, updateDoc, addDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import {goToBook} from "./function.js";
 
 const firebaseConfig = {
@@ -17,6 +17,8 @@ const db = getFirestore();
 
 const params = new URLSearchParams(window.location.search);
 const authorId = params.get("id");
+const username= sessionStorage.getItem("username");
+let selectedRating = 0;
 
 function fill(author) {
     document.getElementById("ime").textContent = author.ime + " " + author.prezime;
@@ -60,5 +62,75 @@ function createBookCard(book) {
     return button;
 }
 
+async function ratingAvg() {
+    const q = query(collection(db, "ocene"), where("idAutora", "==", authorId));
+    const snapshot = await getDocs(q);
+    let sum = 0;
+    snapshot.forEach((doc) => {
+        const rating = doc.data();
+        sum += rating.vrednost;
+    });
+    let avg = sum / snapshot.size;
+    console.log(avg);
+    document.getElementById("rating-avg").textContent = String(avg.toFixed(1));
+}
+
+async function ratingLogic(){
+    const stars = document.querySelectorAll("input[name='rating']");
+    for (const star of stars) {
+        star.addEventListener("change", updateRating);
+    }
+    if (!username) {
+        disableRating();
+        return;
+    }
+    const q = query(collection(db, "korisnici"), where("korisnickoIme", "==", username));
+    const snapshot = await getDocs(q);
+    const korisnik = { id: snapshot.docs[0].id, ...snapshot.docs[0].data() };
+    const q2 = query(collection(db, "ocene"), where("idKorisnika", "==", korisnik.id), where("idAutora", "==", authorId));
+    const snapshot2 = await getDocs(q2);
+    if (snapshot2.empty) {
+        console.log("Selected rating:", selectedRating);
+        return;
+    }
+    const rating = { id: snapshot2.docs[0].id, ...snapshot2.docs[0].data() };
+    const selected= document.getElementById(`${rating.vrednost}`);
+    selected.checked = true;
+    selectedRating = rating.vrednost;
+    console.log("Selected rating:", selectedRating);
+
+}
+
+async function updateRating(e) {
+    selectedRating = parseInt(e.target.value);
+    console.log("Selected rating:", selectedRating);
+    const now = new Date();
+    const date = now.toISOString().split("T")[0];
+    const q = query(collection(db, "korisnici"), where("korisnickoIme", "==", username));
+    const snapshot = await getDocs(q);
+    const userId = snapshot.docs[0].id;
+    const q2 = query(collection(db, "ocene"), where("idKorisnika", "==", userId), where("idAutora", "==", authorId));
+    const snapshot2 = await getDocs(q2);
+    if (snapshot2.empty) {
+        await addDoc(collection(db, "ocene"), {idKorisnika: userId, idAutora: authorId, vrednost: selectedRating, datum: date});
+        console.log("Added rating:", selectedRating);
+    } 
+    else {
+    const docRef = snapshot2.docs[0].ref;
+    await updateDoc(docRef, {vrednost: selectedRating, datum: date});
+    console.log("Updated rating:", selectedRating);
+}
+}
+
+function disableRating() {
+    const stars = document.querySelectorAll(".stars input");
+    for (const star of stars) {
+        star.disabled = true;
+        console.log("disabled");
+    }
+}
+
 loadAuthor();
 loadBooks();
+ratingAvg();
+ratingLogic();
