@@ -60,7 +60,7 @@ function createRatingCard(rating,author) {
     ratingCard.classList.add("rating");
     ratingCard.innerHTML = `
             <div class="rated">
-                <a class="nav-link big" href="author.html?id=${rating.idAutora}">${author.ime} ${author.prezime}</a>
+                <a class="nav-link big" href="author.html?id=${rating.idAutora}">${author.ime} ${author.prezime}</a> <p class="text faded"> ${rating.datum}</p>
             </div>
             <div class="stars" id="stars-${rating.id}">
                 <input type="radio" value="5" disabled>

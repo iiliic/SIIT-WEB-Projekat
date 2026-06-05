@@ -122,6 +122,10 @@
 .stars input:checked ~ label {
     color: #E8B84B;
 }
+.stars input:disabled + label {
+    pointer-events: none;
+}
+
 .book-list-container{
     width: 90%;
     padding: 40px;
