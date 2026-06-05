@@ -20,6 +20,50 @@ const authorId = params.get("id");
 const username= sessionStorage.getItem("username");
 let selectedRating = 0;
 
+function startSlideshow(images) {
+    const img1 = document.getElementById("img1");
+    const img2 = document.getElementById("img2");
+
+    // Preload images
+    images.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+
+    if (images.length === 1) {
+        img1.src = images[0];
+        img1.style.opacity = 1;
+        img2.style.opacity = 0;
+        return;
+    }
+
+    let currentIndex = 0;
+    let showingFirst = true;
+
+    
+    img1.src = images[0];
+    img2.src = images[1];
+
+    img1.style.opacity = 1;
+    img2.style.opacity = 0;
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+
+        if (showingFirst) {
+            img2.src = images[currentIndex];
+            img2.style.opacity = 1;
+            img1.style.opacity = 0;
+        } else {
+            img1.src = images[currentIndex];
+            img1.style.opacity = 1;
+            img2.style.opacity = 0;
+        }
+
+        showingFirst = !showingFirst;
+    }, 5000);
+}
+
 function fill(author) {
     document.getElementById("ime").textContent = author.ime + " " + author.prezime;
     document.getElementById("biografija").textContent = author.biografija;
@@ -27,7 +71,7 @@ function fill(author) {
     document.getElementById("status").textContent = author.status;
     document.getElementById("napisano").textContent = author.brojProdatihPrimeraka;
     document.getElementById("nagrade").textContent = author.brojOsvojenihNagrada;
-    document.getElementById("slika").src = author.slike[0];
+    startSlideshow(author.slike);
 }
 
 async function loadAuthor() {

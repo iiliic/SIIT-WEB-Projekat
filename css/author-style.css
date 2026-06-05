@@ -30,14 +30,18 @@
 }
 
 .author-image-container{
+    flex: 1;
     height: 100%;
     aspect-ratio: 1/1;
     overflow: hidden;
+    position: relative;
 }
 .author-image{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: absolute;
+    transition: opacity 1s ease-in-out;
 }
 
 .author-text-container{
