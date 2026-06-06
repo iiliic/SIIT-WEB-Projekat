@@ -73,4 +73,14 @@ function createAuthorCard(author) {
     return button;
 }
 
+function search() {
+    const query = document.getElementById("pretraga").value.trim().toLowerCase();
+    console.log(query);
+    document.querySelectorAll(".item").forEach(item => {
+        const naziv = item.querySelector(".item-element p").textContent.toLowerCase();
+        item.style.display = naziv.includes(query) ? "flex" : "none";
+    });
+}
+
 loadAuthors();
+document.getElementById("pretraga").addEventListener("keyup", search);
