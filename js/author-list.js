@@ -75,12 +75,50 @@ function createAuthorCard(author) {
 
 function search() {
     const query = document.getElementById("pretraga").value.trim().toLowerCase();
-    console.log(query);
+    let checkedValues=[];
+    const checked = document.querySelectorAll("input[name='status']:checked");
+    for (const check of checked) {
+        checkedValues.push(check.value);
+    }
+    if(checkedValues.length === 0){
+        document.querySelectorAll(".item").forEach(item => {
+            const naziv = item.querySelector(".item-element p").textContent.toLowerCase();
+            item.style.display = naziv.includes(query) ? "flex" : "none";
+        });
+        return
+    }
+    if(query === ""){
+        document.querySelectorAll(".item").forEach(item => {
+            const status = item.querySelector(".item-element:nth-child(3) p").textContent;
+            item.style.display = checkedValues.includes(status) ? "flex" : "none";
+        });
+        return;
+    }
     document.querySelectorAll(".item").forEach(item => {
+        const status = item.querySelector(".item-element:nth-child(3) p").textContent;
         const naziv = item.querySelector(".item-element p").textContent.toLowerCase();
-        item.style.display = naziv.includes(query) ? "flex" : "none";
+
+        const matchesStatus = checkedValues.includes(status);
+        const matchesQuery = naziv.includes(query);
+
+        item.style.display = (matchesStatus && matchesQuery) ? "flex" : "none";
+    });
+}
+
+function checkboxSearch() {
+    if(checkedValues.length === 0){
+        search();
+        return;
+    }
+    document.querySelectorAll(".item").forEach(item => {
+        const status = item.querySelector(".item-element:nth-child(3) p").textContent;
+        item.style.display = checkedValues.includes(status) ? "flex" : "none";
     });
 }
 
 loadAuthors();
 document.getElementById("pretraga").addEventListener("keyup", search);
+const status = document.querySelectorAll("input[name='status']");
+for (const check of status) {
+    check.addEventListener("change", search);
+}

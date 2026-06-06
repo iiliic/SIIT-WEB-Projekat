@@ -175,14 +175,9 @@ header {
     justify-content: center;   
     background-color: transparent;
     border: none;
-    cursor: pointer;
     transition: filter 0.3s ease;
 }
-.image-button:hover {
-    filter: drop-shadow(0 0 5px #E8B84B)
-            drop-shadow(0 0 10px #E8B84B)
-            drop-shadow(0 0 20px #E8B84B);
-}
+
 .button-image{ 
     width: 36px;
     height: 36px;
