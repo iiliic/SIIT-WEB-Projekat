@@ -105,17 +105,6 @@ function search() {
     });
 }
 
-function checkboxSearch() {
-    if(checkedValues.length === 0){
-        search();
-        return;
-    }
-    document.querySelectorAll(".item").forEach(item => {
-        const status = item.querySelector(".item-element:nth-child(3) p").textContent;
-        item.style.display = checkedValues.includes(status) ? "flex" : "none";
-    });
-}
-
 loadAuthors();
 document.getElementById("pretraga").addEventListener("keyup", search);
 const status = document.querySelectorAll("input[name='status']");

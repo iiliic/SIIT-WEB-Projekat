@@ -44,7 +44,6 @@ function createRow(author) {
     const button = document.createElement("button");
     button.classList.add("item");
     button.addEventListener("click", handleClick);
-    // button.onclick = () => goToBook(book.id);
     button.innerHTML = 
         `<div class="item-element">
             <p class="text">${author.id}</p>
@@ -74,4 +73,13 @@ function createRow(author) {
     return button;
 }
 
+function search() {
+    const query = document.getElementById("pretraga").value.trim().toLowerCase();
+    document.querySelectorAll(".item").forEach(item => {
+        const naziv = item.querySelector(".item-element:nth-child(2) p").textContent.toLowerCase();
+        item.style.display = naziv.includes(query) ? "flex" : "none";
+    });
+}
+
 loadAuthors();
+document.getElementById("pretraga").addEventListener("keyup", search);
