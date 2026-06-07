@@ -175,6 +175,75 @@ function addAdd(){
     }
 }
 
+function addEdit(){
+    const popup = document.createElement("div");
+    popup.classList.add("edit");
+    popup.id = "editPopup";
+    popup.innerHTML =
+    `<div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Измена Аутора</p>
+                <button id="cancelEdit" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form id="editForm">
+                <div class="inline">
+                    <div class="label-above-input">
+                        <label for="ime" class="text">Име:</label>
+                        <input type="text" id="ime" name="ime" class="input-style">
+                    </div>
+                    <div class="label-above-input">
+                        <label for="prezime" class="text">Презиме:</label>
+                        <input type="text" id="prezime" name="prezime" class="input-style">
+                    </div>
+                    <div class="label-above-input">
+                        <label for="status" class="text">Статус:</label>
+                        <input type="text" id="status" name="status" class="input-style">
+                    </div>
+                </div><br>
+                <div class="inline">
+                    <div class="label-above-input">
+                        <label for="datum" class="text">Датум Рођења:</label>
+                        <input type="text" id="datum" name="datum" class="input-style">
+                    </div>
+                    <div class="label-above-input">
+                        <label for="nagrade" class="text">Број Освојених Награда:</label>
+                        <input type="number" id="nagrade" name="nagrade" class="input-style">
+                    </div>
+                    <div class="label-above-input">
+                        <label for="prodato" class="text">Број Продатих Књига:</label>
+                        <input type="number" id="prodato" name="prodato" class="input-style">
+                    </div>
+                </div><br>
+                <div class="label-above-input">
+                    <label for="menadzer" class="text">Број Менаџера:</label>
+                    <input type="text" id="menadzer" name="menadzer" class="input-style">
+                </div><br>
+                <div class="label-above-input">
+                    <label for="biografija" class="text">Биографија:</label>
+                    <textarea rows="3" id="biografija" name="biografija" class="input-style"></textarea>
+                </div><br>
+                <div class="label-above-input">
+                    <label for="slike" class="text">Слике: <span class="text faded">(Следећи ред за унос друге слике)</span></label>
+                    <textarea rows="3" id="slike" name="slike" class="input-style"></textarea>
+                </div>
+                <div class="popup-button-container">
+                    <button class="button-style" id="confirmEdit">Измени</button>
+                </div>
+            </form>
+            </div>
+        </div>`;
+    document.body.appendChild(popup);
+    const confirmEdit = document.getElementById("confirmEdit");
+    const cancelEdit = document.getElementById("cancelEdit");
+
+    confirmEdit.onclick = editAuthor;
+    cancelEdit.onclick = () => {
+        const editPopup = document.getElementById("editPopup");
+        editPopup.classList.remove("show");
+    }
+}
+
 function deleteLogic(){
     const selected = document.querySelector(".item.selected");
     if (!selected) {
@@ -198,21 +267,57 @@ async function deleteAuthor() {
     deletePopup.classList.remove("show");
 }
 
+function editLogic(){
+    const selected = document.querySelector(".item.selected");
+    if (!selected) {
+        showToast("Молимо изаберите аутора за измену.");
+        return; 
+    }
+    fillEdit(selected);
+    editPopup.classList.add("show");
+}
+
+async function fillEdit(selected){
+    const authorId = selected.querySelector(".item-element:nth-child(1) p").textContent;
+    const docSnap = await getDoc(doc(db, "autori", authorId));
+    const data = docSnap.data();
+    const popup = document.getElementById("editPopup")
+    console.log(data);
+    editPopup.querySelector('[name="ime"]').value = data.ime;
+    editPopup.querySelector('[name="prezime"]').value = data.prezime;
+    editPopup.querySelector('[name="datum"]').value = data.datumRodjenja;
+    editPopup.querySelector('[name="status"]').value = data.status;
+    editPopup.querySelector('[name="prodato"]').value = data.brojProdatihPrimeraka;
+    editPopup.querySelector('[name="nagrade"]').value = data.brojOsvojenihNagrada;
+    editPopup.querySelector('[name="menadzer"]').value = data.kontaktTelefonMenadzera;
+    editPopup.querySelector('[name="biografija"]').textContent = data.biografija;
+    editPopup.querySelector('[name="slike"]').textContent = data.slike.join("\n");
+    
+}
+
 async function addAuthor() {
     console.log("added");
+    //TODO
+}
+
+async function editAuthor() {
+    console.log("added");
+    //TODO
 }
 
 function main(){
     addDelete();
     addAdd();
+    addEdit();
     const deletePopup = document.getElementById("deletePopup");
     const addPopup = document.getElementById("addPopup");
+    const editPopup = document.getElementById("editPopup");
     const openDelete = document.getElementById("openDelete");
     const openEdit = document.getElementById("openEdit");
     const openAdd = document.getElementById("openAdd");
 
     openDelete.onclick = deleteLogic;
-    openEdit.onclick = () => {};
+    openEdit.onclick = editLogic;
     openAdd.onclick = () => {
         addPopup.classList.add("show");
     };
