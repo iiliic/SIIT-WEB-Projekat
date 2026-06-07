@@ -81,3 +81,13 @@
 .table-header .item-element p{
     color: #0a0907;
 }
+
+.inline{
+    display: flex;
+    gap: 10px;
+}
+
+textarea {
+    resize: none;
+    overflow-y: auto;
+}

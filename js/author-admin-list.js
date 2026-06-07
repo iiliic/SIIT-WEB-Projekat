@@ -83,15 +83,15 @@ function search() {
 
 function addDelete(){
     const popup = document.createElement("div");
-    popup.classList.add("popup");
+    popup.classList.add("delete");
     popup.id = "deletePopup";
      popup.innerHTML =
     `<div class="popup-content-position">
             <div class="popup-content">
                 <p class="text big">Да ли сте сигурни да желите да избришете овог аутора?</p>
                 <div class="popup-button-container">
-                    <button type="submit" class="button-style" id="confirmDelete">Да</button>
-                    <button type="submit" class="button-style" id="cancelDelete">Не</button>
+                    <button class="button-style" id="confirmDelete">Да</button>
+                    <button class="button-style" id="cancelDelete">Не</button>
                 </div>
             </div>
         </div>`;
@@ -106,6 +106,75 @@ function addDelete(){
     }
 }
 
+function addAdd(){
+    const popup = document.createElement("div");
+    popup.classList.add("add");
+    popup.id = "addPopup";
+    popup.innerHTML =
+    `<div class="popup-content-position">
+            <div class="popup-header">
+                <p class="text huge">Додавање Аутора</p>
+                <button id="cancelAdd" class="button-style">X</button>
+            </div>
+            <div class="popup-content">
+            <form id="addForm">
+                <div class="inline">
+                    <div class="label-above-input">
+                        <label for="ime" class="text">Име:</label>
+                        <input type="text" id="ime" name="ime" class="input-style">
+                    </div>
+                    <div class="label-above-input">
+                        <label for="prezime" class="text">Презиме:</label>
+                        <input type="text" id="prezime" name="prezime" class="input-style">
+                    </div>
+                    <div class="label-above-input">
+                        <label for="status" class="text">Статус:</label>
+                        <input type="text" id="status" name="status" class="input-style">
+                    </div>
+                </div><br>
+                <div class="inline">
+                    <div class="label-above-input">
+                        <label for="datum" class="text">Датум Рођења:</label>
+                        <input type="text" id="datum" name="datum" class="input-style">
+                    </div>
+                    <div class="label-above-input">
+                        <label for="nagrade" class="text">Број Освојених Награда:</label>
+                        <input type="number" id="nagrade" name="nagrade" class="input-style">
+                    </div>
+                    <div class="label-above-input">
+                        <label for="prodato" class="text">Број Продатих Књига:</label>
+                        <input type="number" id="prodato" name="prodato" class="input-style">
+                    </div>
+                </div><br>
+                <div class="label-above-input">
+                    <label for="menadzer" class="text">Број Менаџера:</label>
+                    <input type="text" id="menadzer" name="menadzer" class="input-style">
+                </div><br>
+                <div class="label-above-input">
+                    <label for="biografija" class="text">Биографија:</label>
+                    <textarea rows="3" id="biografija" name="biografija" class="input-style"></textarea>
+                </div><br>
+                <div class="label-above-input">
+                    <label for="slike" class="text">Слике: <span class="text faded">(Следећи ред за унос друге слике)</span></label>
+                    <textarea rows="3" id="slike" name="slike" class="input-style"></textarea>
+                </div>
+                <div class="popup-button-container">
+                    <button class="button-style" id="confirmAdd">Пријави се</button>
+                </div>
+            </form>
+            </div>
+        </div>`;
+    document.body.appendChild(popup);
+    const confirmAdd = document.getElementById("confirmAdd");
+    const cancelAdd = document.getElementById("cancelAdd");
+
+    confirmAdd.onclick = addAuthor;
+    cancelAdd.onclick = () => {
+        const addPopup = document.getElementById("addPopup");
+        addPopup.classList.remove("show");
+    }
+}
+
 function deleteLogic(){
     const selected = document.querySelector(".item.selected");
     if (!selected) {
@@ -114,7 +183,6 @@ function deleteLogic(){
     }
     deletePopup.classList.add("show");
 }
-
 
 async function deleteAuthor() {
     const selected = document.querySelector(".item.selected");
@@ -130,16 +198,24 @@ async function deleteAuthor() {
     deletePopup.classList.remove("show");
 }
 
+async function addAuthor() {
+    console.log("added");
+}
+
 function main(){
     addDelete();
+    addAdd();
     const deletePopup = document.getElementById("deletePopup");
+    const addPopup = document.getElementById("addPopup");
     const openDelete = document.getElementById("openDelete");
     const openEdit = document.getElementById("openEdit");
     const openAdd = document.getElementById("openAdd");
 
     openDelete.onclick = deleteLogic;
     openEdit.onclick = () => {};
-    openAdd.onclick = () => {};
+    openAdd.onclick = () => {
+        addPopup.classList.add("show");
+    };
 }
 
 await loadAuthors();
