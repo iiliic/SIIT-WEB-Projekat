@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDoc, getDocs, doc, query, where, deleteDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDoc, getDocs, doc, query, where, deleteDoc, updateDoc, addDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import {showToast} from "./function.js";
 
 
@@ -128,8 +128,8 @@ function addAdd(){
                         <input type="text" id="prezime" name="prezime" class="input-style">
                     </div>
                     <div class="label-above-input">
-                        <label for="status" class="text">Статус:</label>
-                        <input type="text" id="status" name="status" class="input-style">
+                        <label for="menadzer" class="text">Број Менаџера:</label>
+                        <input type="text" id="menadzer" name="menadzer" class="input-style">
                     </div>
                 </div><br>
                 <div class="inline">
@@ -146,9 +146,16 @@ function addAdd(){
                         <input type="number" id="prodato" name="prodato" class="input-style">
                     </div>
                 </div><br>
-                <div class="label-above-input">
-                    <label for="menadzer" class="text">Број Менаџера:</label>
-                    <input type="text" id="menadzer" name="menadzer" class="input-style">
+                <p class="text">Статус:</p>
+                <div class="inline">
+                        <input type="radio" id="status-aktivan" name="status" value="Активан">
+                        <label for="status-aktivan" class="text">Активан</label>
+
+                        <input type="radio" id="status-u-penziji" name="status" value="У пензији">
+                        <label for="status-u-penziji" class="text">У пензији</label>
+
+                        <input type="radio" id="status-preminuo" name="status" value="Преминуо">
+                        <label for="status-preminuo" class="text">Преминуо</label>
                 </div><br>
                 <div class="label-above-input">
                     <label for="biografija" class="text">Биографија:</label>
@@ -159,7 +166,7 @@ function addAdd(){
                     <textarea rows="3" id="slike" name="slike" class="input-style"></textarea>
                 </div>
                 <div class="popup-button-container">
-                    <button class="button-style" id="confirmAdd">Пријави се</button>
+                    <button action="submit" class="button-style" id="confirmAdd">Додај</button>
                 </div>
             </form>
             </div>
@@ -168,7 +175,6 @@ function addAdd(){
     const confirmAdd = document.getElementById("confirmAdd");
     const cancelAdd = document.getElementById("cancelAdd");
 
-    confirmAdd.onclick = addAuthor;
     cancelAdd.onclick = () => {
         const addPopup = document.getElementById("addPopup");
         addPopup.classList.remove("show");
@@ -197,8 +203,8 @@ function addEdit(){
                         <input type="text" id="prezime" name="prezime" class="input-style">
                     </div>
                     <div class="label-above-input">
-                        <label for="status" class="text">Статус:</label>
-                        <input type="text" id="status" name="status" class="input-style">
+                        <label for="menadzer" class="text">Број Менаџера:</label>
+                        <input type="text" id="menadzer" name="menadzer" class="input-style">
                     </div>
                 </div><br>
                 <div class="inline">
@@ -215,9 +221,16 @@ function addEdit(){
                         <input type="number" id="prodato" name="prodato" class="input-style">
                     </div>
                 </div><br>
-                <div class="label-above-input">
-                    <label for="menadzer" class="text">Број Менаџера:</label>
-                    <input type="text" id="menadzer" name="menadzer" class="input-style">
+                <p class="text">Статус:</p>
+                <div class="inline">
+                        <input type="radio" id="status-aktivan" name="status" value="Активан">
+                        <label for="status-aktivan" class="text">Активан</label>
+
+                        <input type="radio" id="status-u-penziji" name="status" value="У пензији">
+                        <label for="status-u-penziji" class="text">У пензији</label>
+
+                        <input type="radio" id="status-preminuo" name="status" value="Преминуо">
+                        <label for="status-preminuo" class="text">Преминуо</label>
                 </div><br>
                 <div class="label-above-input">
                     <label for="biografija" class="text">Биографија:</label>
@@ -237,7 +250,6 @@ function addEdit(){
     const confirmEdit = document.getElementById("confirmEdit");
     const cancelEdit = document.getElementById("cancelEdit");
 
-    confirmEdit.onclick = editAuthor;
     cancelEdit.onclick = () => {
         const editPopup = document.getElementById("editPopup");
         editPopup.classList.remove("show");
@@ -281,29 +293,143 @@ async function fillEdit(selected){
     const authorId = selected.querySelector(".item-element:nth-child(1) p").textContent;
     const docSnap = await getDoc(doc(db, "autori", authorId));
     const data = docSnap.data();
-    const popup = document.getElementById("editPopup")
-    console.log(data);
+    const popup = document.getElementById("editPopup");
     editPopup.querySelector('[name="ime"]').value = data.ime;
     editPopup.querySelector('[name="prezime"]').value = data.prezime;
     editPopup.querySelector('[name="datum"]').value = data.datumRodjenja;
-    editPopup.querySelector('[name="status"]').value = data.status;
     editPopup.querySelector('[name="prodato"]').value = data.brojProdatihPrimeraka;
     editPopup.querySelector('[name="nagrade"]').value = data.brojOsvojenihNagrada;
     editPopup.querySelector('[name="menadzer"]').value = data.kontaktTelefonMenadzera;
-    editPopup.querySelector('[name="biografija"]').textContent = data.biografija;
-    editPopup.querySelector('[name="slike"]').textContent = data.slike.join("\n");
+    editPopup.querySelector(`input[name="status"][value="${data.status}"]`).checked=true;
+    editPopup.querySelector('[name="biografija"]').value = data.biografija;
+    editPopup.querySelector('[name="slike"]').value = data.slike.join("\n");
+
     
 }
 
-async function addAuthor() {
-    console.log("added");
-    //TODO
+
+async function validation(form) {
+
+    const ime = form.querySelector('[name="ime"]').value;
+    const prezime = form.querySelector('[name="prezime"]').value;
+    const datum = form.querySelector('[name="datum"]').value;
+    const prodato = form.querySelector('[name="prodato"]').value;
+    const nagrade = form.querySelector('[name="nagrade"]').value;
+    const menadzer = form.querySelector('[name="menadzer"]').value;
+    const statusEl = form.querySelector('input[name="status"]:checked');
+    let status = null;
+    if (statusEl != null){
+        status=statusEl.value;
+    }
+    const biografija = form.querySelector('[name="biografija"]').value;
+    const slike = form.querySelector('[name="slike"]').value.split("\n");
+
+    if(ime==="" || prezime==="" || datum===""|| !status || biografija===""|| prodato==="" ||nagrade===""){
+        showToast("Nisu unete sve informacije.");
+        return null;
+    }
+
+    const phoneRegex = /^\+381\s\d{2}\s\d{6,7}$/;
+    const clean = menadzer.replace(/-/g, "");
+    if (!phoneRegex.test(clean)) {
+        showToast("Број телефона менаџера није важећи.");
+        return null;
+    }
+
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(datum)) {
+        showToast("Унет датум није правог формата (ГГГГ-ММ-ДД).");
+        return null;
+    }
+
+    if(prodato < 0){
+        showToast("Број продатих књига мора бити 0 или више.");
+        return null;
+    }
+
+    if(nagrade < 0){
+        showToast("Број освојених награда мора бити 0 или више.");
+        return null;
+    }
+    if(!await(allImageUrls(slike))){
+        showToast("Неки од линкова за слике не воде до слика.");
+        return null;
+    }
+
+    const data={
+        ime:ime,
+        prezime:prezime,
+        datumRodjenja:datum,
+        kontaktTelefonMenadzera:menadzer,
+        brojOsvojenihNagrada:parseInt(nagrade,10),
+        brojProdatihPrimeraka:parseInt(prodato,10),
+        biografija:biografija,
+        status:status,
+        slike:slike
+    };
+    console.log(data);
+    return data;
 }
 
-async function editAuthor() {
-    console.log("added");
-    //TODO
+function isValidUrl(str) {
+    try {
+        new URL(str);
+        return true;
+    } 
+    catch {
+        return false;
+    }
 }
+function isImageUrl(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+
+        img.src = url;
+    });
+}
+async function validateImageUrl(str) {
+    if (!isValidUrl(str)) {
+        return false;
+    }
+    return await isImageUrl(str);
+}
+
+async function allImageUrls(urls) {
+    for (const url of urls) {
+        console.log(url);
+        const valid = await isImageUrl(url);
+
+        if (!valid) {
+            return false;
+        }
+    }
+    return true;
+}
+
+async function addAuthor(e) {
+    e.preventDefault();
+    const data = await validation(e.currentTarget);
+    if (data){
+        await addDoc(collection(db, "autori"), data);
+        location.reload();
+    }
+}
+
+async function editAuthor(e) {
+    e.preventDefault();
+    const data = await validation(e.currentTarget);
+    if (data){
+        const selected = document.querySelector(".item.selected");
+        const authorId = selected.querySelector(".item-element:nth-child(1) p").textContent;
+        const ref = doc(db, "autori", authorId);
+        await updateDoc(ref,data);
+        location.reload();
+    }
+}
+
 
 function main(){
     addDelete();
@@ -321,6 +447,13 @@ function main(){
     openAdd.onclick = () => {
         addPopup.classList.add("show");
     };
+
+    const addForm = document.getElementById("addForm");
+    const editForm = document.getElementById("editForm");
+
+    console.log(addForm);
+    addForm.addEventListener("submit", addAuthor);
+    editForm.addEventListener("submit", editAuthor);
 }
 
 await loadAuthors();
