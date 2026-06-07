@@ -1,5 +1,7 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {getFirestore, collection, getDoc, getDocs, doc, query, where, deleteDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {showToast} from "./function.js";
+
 
 const firebaseConfig = {
   	apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
@@ -104,12 +106,18 @@ function addDelete(){
     }
 }
 
-async function deleteAuthor() {
+function deleteLogic(){
     const selected = document.querySelector(".item.selected");
     if (!selected) {
-        alert("Молимо изаберите аутора за брисање.");
+        showToast("Молимо изаберите аутора за брисање.");
         return;
     }
+    deletePopup.classList.add("show");
+}
+
+
+async function deleteAuthor() {
+    const selected = document.querySelector(".item.selected");
     const authorId = selected.querySelector(".item-element:nth-child(1) p").textContent;
     await deleteDoc(doc(db, "autori", authorId));
     const q=query(collection(db, "ocene"), where("idAutora", "==", authorId));
@@ -129,7 +137,7 @@ function main(){
     const openEdit = document.getElementById("openEdit");
     const openAdd = document.getElementById("openAdd");
 
-    openDelete.onclick = () => {deletePopup.classList.add("show")};
+    openDelete.onclick = deleteLogic;
     openEdit.onclick = () => {};
     openAdd.onclick = () => {};
 }

@@ -48,6 +48,29 @@ header {
     pointer-events: auto;
 }
 
+.toast {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    padding: 15px 25px;
+    border-radius: 5px;
+
+    background-color: #0a0907;
+    color: #E8B84B;
+    box-shadow: 0 0 5px  #E8B84B,
+                0 0 10px #E8B84B,
+                0 0 20px #E8B84B;
+
+    transition: top 0.4s ease;
+    z-index: 9999;
+}
+
+.toast.show {
+    top: 3%;
+}
+
 .popup-content-position {
     position: absolute;
     top: 50%;
