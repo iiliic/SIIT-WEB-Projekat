@@ -142,7 +142,6 @@ async function ratingLogic(){
     selected.checked = true;
     selectedRating = rating.vrednost;
     console.log("Selected rating:", selectedRating);
-
 }
 
 async function updateRating(e) {
@@ -163,6 +162,7 @@ async function updateRating(e) {
     const docRef = snapshot2.docs[0].ref;
     await updateDoc(docRef, {vrednost: selectedRating, datum: date});
     console.log("Updated rating:", selectedRating);
+    location.reload();
 }
 }
 

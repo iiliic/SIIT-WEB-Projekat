@@ -31,7 +31,7 @@ header {
     margin-right: 20px;
 }
 
-.login, .signin, .signout {
+.login, .signin, .signout, .popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,7 +43,7 @@ header {
     transition: opacity 0.4s ease;
     z-index: 1000;
 }
-.login.show, .signin.show, .signout.show{
+.login.show, .signin.show, .signout.show, .popup.show{
     opacity: 1;
     pointer-events: auto;
 }

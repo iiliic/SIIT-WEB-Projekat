@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDoc, getDocs, doc, query, where} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDoc, getDocs, doc, query, where, deleteDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   	apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
@@ -17,10 +17,9 @@ const db = getFirestore();
 
 function handleClick(event) {
   	var clickedItem = event.currentTarget;
-
   	removeSelection();
-
   	clickedItem.classList.add("selected");
+    console.log("Selected author ID:", clickedItem.querySelector(".item-element p").textContent);
 }
 
 function removeSelection() {
@@ -81,5 +80,55 @@ function search() {
     });
 }
 
-loadAuthors();
+function addDelete(){
+    const popup = document.createElement("div");
+    popup.classList.add("popup");
+    popup.id = "deletePopup";
+     popup.innerHTML =
+    `<div class="popup-content-position">
+            <div class="popup-content">
+                <p class="text big">Да ли сте сигурни да желите да избришете овог аутора?</p>
+                <div class="popup-button-container">
+                    <button type="submit" class="button-style" id="confirmDelete">Да</button>
+                    <button type="submit" class="button-style" id="cancelDelete">Не</button>
+                </div>
+            </div>
+        </div>`;
+    document.body.appendChild(popup);
+    const confirmDelete = document.getElementById("confirmDelete");
+    const cancelDelete = document.getElementById("cancelDelete");
+
+    confirmDelete.onclick = deleteAuthor;
+    cancelDelete.onclick = () => {
+        const deletePopup = document.getElementById("deletePopup");
+        deletePopup.classList.remove("show");
+    }
+}
+
+async function deleteAuthor() {
+    const selected = document.querySelector(".item.selected");
+    if (!selected) {
+        alert("Молимо изаберите аутора за брисање.");
+        return;
+    }
+    const authorId = selected.querySelector(".item-element:nth-child(1) p").textContent;
+    await deleteDoc(doc(db, "autori", authorId));
+    selected.remove();
+    deletePopup.classList.remove("show");
+}
+
+function main(){
+    addDelete();
+    const deletePopup = document.getElementById("deletePopup");
+    const openDelete = document.getElementById("openDelete");
+    const openEdit = document.getElementById("openEdit");
+    const openAdd = document.getElementById("openAdd");
+
+    openDelete.onclick = () => {deletePopup.classList.add("show")};
+    openEdit.onclick = () => {};
+    openAdd.onclick = () => {};
+}
+
+await loadAuthors();
+main();
 document.getElementById("pretraga").addEventListener("keyup", search);
