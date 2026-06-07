@@ -28,7 +28,6 @@ function removeSelection() {
     });
 }
 
-
 async function loadAuthors() {
     const container = document.getElementById("container");
     const snapshot = await getDocs(collection(db, "autori"));
@@ -113,6 +112,12 @@ async function deleteAuthor() {
     }
     const authorId = selected.querySelector(".item-element:nth-child(1) p").textContent;
     await deleteDoc(doc(db, "autori", authorId));
+    const q=query(collection(db, "ocene"), where("idAutora", "==", authorId));
+    const snapshot = await getDocs(q);
+    console.log(snapshot);
+    for (const snap of snapshot.docs){
+        await deleteDoc(doc(db, "ocene", snap.id));
+    }
     selected.remove();
     deletePopup.classList.remove("show");
 }
