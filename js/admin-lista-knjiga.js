@@ -1,5 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {getFirestore, collection, getDocs} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {showToast} from "./function.js";
  
 const firebaseConfig = {
     apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
@@ -144,7 +145,7 @@ id("btn-dodaj").addEventListener("click", () => {
  
 id("btn-izmeni").addEventListener("click", () => {
     if (!selectedKnjiga) {
-        alert("Прво означите књигу у табели.");
+        showToast("Прво означите књигу у табели.");
         return;
     }
     popuniFormuIzmeni(selectedKnjiga);
@@ -153,7 +154,7 @@ id("btn-izmeni").addEventListener("click", () => {
  
 id("btn-obrisi").addEventListener("click", () => {
     if (!selectedKnjiga) {
-        alert("Прво означите књигу у табели.");
+        showToast("Прво означите књигу у табели.");
         return;
     }
     id("obrisi-naziv").textContent = selectedKnjiga.naziv;

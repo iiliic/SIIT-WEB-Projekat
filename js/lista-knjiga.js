@@ -15,6 +15,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let sveKnjige = [];
+
 async function loadBooks() {
     const container = document.getElementById("books-container");
 
@@ -23,18 +25,19 @@ async function loadBooks() {
     for (const bookDoc of snapshot.docs) {
         const book = { id: bookDoc.id, ...bookDoc.data() };
         book.imeAutora = await getAutorIme(book.idAutora);
+        sveKnjige.push(book); // dodavanje 
         const card = createBookCard(book);
         container.appendChild(card);
 }
 }
 
-function createBookCard(book) {
+function createBookCard(book, pretraga = "") {
     const button = document.createElement("button");
     button.classList.add("book-item");
     button.onclick = () => goToBook(book.id);
     button.innerHTML = 
         `<img src="${book.slike[0]}" alt="knjiga" class="book-image">
-        <h3 class="name">${book.naziv}</h3>
+        <h3 class="name">${highlight(book.naziv, pretraga)}</h3>
         <p class="name">${book.imeAutora}</p>
         <p>${book.zanr} - ${book.format}</p>
         <p>Cena: ${book.cena} RSD</p>
@@ -47,5 +50,35 @@ async function getAutorIme(idAutora) {
     const autorSnap = await getDoc(doc(db, "autori", idAutora));
     return autorSnap.exists() ? `${autorSnap.data().ime} ${autorSnap.data().prezime}`  : "Nepoznat autor";
 }
+
+function filtriraj() {
+    const search = document.getElementById("pretraga").value.trim().toLowerCase();
+
+    const selectedZanr = [...document.querySelectorAll('#zanr-dropdown input:checked')].map(cb => cb.value);
+
+    const container = document.getElementById("books-container");
+    container.innerHTML = "";
+
+    const filtriraneKnjige = sveKnjige.filter(book => {
+        const nazivMatch = book.naziv.toLowerCase().includes(search);
+        const zanrMatch = selectedZanr.length === 0 || selectedZanr.includes(book.zanr);
+        return nazivMatch && zanrMatch;
+    });
+
+    filtriraneKnjige.forEach(book => {
+        const card = createBookCard(book, search);
+        container.appendChild(card);
+    });
+}
+
+document.getElementById("pretraga").addEventListener("keyup", filtriraj);
+document.querySelectorAll('#zanr-dropdown input').forEach(cb => cb.addEventListener("change", filtriraj));
+
+function highlight(text, query) {
+    if (!query) return text;
+    const regex = new RegExp(`(${query})`   , 'gi');           // g da ne bi stalo posle prvog, a i je ignore za velika/mala slova
+    return text.replace(regex, '<span class="marked">$1</span>'); 
+}
+// ako se searchuje pre nego sto se ucitaju sve knjige knjige koje se jos ucitavaju ce se dodavati pored searchuvane, anlaki
 
 loadBooks();

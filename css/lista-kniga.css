@@ -214,3 +214,8 @@ body{
     cursor: pointer;
 }
 
+.marked {
+    background-color: #E8B84B;
+    color: #0a0907;
+    border-radius: 5px;
+}
