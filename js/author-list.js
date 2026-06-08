@@ -24,6 +24,10 @@ async function loadAuthors() {
         const card = createAuthorCard(author);
         container.appendChild(card);
     });
+    document.querySelectorAll(".item").forEach(item => {
+            const naziv = item.querySelector(".item-element p");
+            naziv.dataset.original = naziv.textContent;
+    });
 }
 
 function createAuthorCard(author) {
@@ -80,15 +84,37 @@ function search() {
     for (const check of checked) {
         checkedValues.push(check.value);
     }
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`(${escaped})`, "gi");
+    if(query ==="" && checkedValues.length===0){
+        document.querySelectorAll(".item").forEach(item => {
+            const naziv = item.querySelector(".item-element p");
+            const original = naziv.dataset.original;
+            naziv.innerHTML = original;
+            item.style.display = "flex";
+            return;
+        });
+    }
     if(checkedValues.length === 0){
         document.querySelectorAll(".item").forEach(item => {
-            const naziv = item.querySelector(".item-element p").textContent.toLowerCase();
-            item.style.display = naziv.includes(query) ? "flex" : "none";
+            const naziv = item.querySelector(".item-element p");
+            const original = naziv.dataset.original;
+            //if (!query) {
+            //    naziv.innerHTML = original;
+            //    item.style.display = "flex";
+            //    return;
+            //}
+            naziv.innerHTML = original.replace(regex, '<span class="big marked">$1</span>');
+            item.style.display = naziv.dataset.original.toLowerCase().includes(query.toLowerCase()) ? "flex" : "none";
         });
         return
     }
     if(query === ""){
         document.querySelectorAll(".item").forEach(item => {
+            const naziv = item.querySelector(".item-element p");
+            const original = naziv.dataset.original;
+            naziv.innerHTML = original;
+            item.style.display = "flex";
             const status = item.querySelector(".item-element:nth-child(3) p").textContent;
             item.style.display = checkedValues.includes(status) ? "flex" : "none";
         });
@@ -96,17 +122,20 @@ function search() {
     }
     document.querySelectorAll(".item").forEach(item => {
         const status = item.querySelector(".item-element:nth-child(3) p").textContent;
-        const naziv = item.querySelector(".item-element p").textContent.toLowerCase();
-
+        const naziv = item.querySelector(".item-element p");
+        const original = naziv.dataset.original;
+        console.log(original);
+        naziv.dataset.original=original;
+        naziv.innerHTML = original.replace(regex, '<span class="big marked">$1</span>');
         const matchesStatus = checkedValues.includes(status);
-        const matchesQuery = naziv.includes(query);
+        const matchesQuery = naziv.dataset.original.toLowerCase().includes(query.toLowerCase());
 
         item.style.display = (matchesStatus && matchesQuery) ? "flex" : "none";
     });
 }
 
 loadAuthors();
-document.getElementById("pretraga").addEventListener("keyup", search);
+document.getElementById("pretraga").addEventListener("input", search);
 const status = document.querySelectorAll("input[name='status']");
 for (const check of status) {
     check.addEventListener("change", search);

@@ -260,3 +260,10 @@ p{
 .hidden{
     display: none;
 }
+
+.marked{
+    text-shadow:0 0 5px #E8B84B,
+                0 0 10px #E8B84B,
+                0 0 20px #E8B84B;
+    color:#E8B84B;
+}
