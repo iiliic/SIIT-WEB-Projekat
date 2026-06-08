@@ -34,6 +34,7 @@ async function loadProfile() {
     fill(korisnik);
     loadRatings(korisnik);
     //TODO: ilija dodaj reviews.
+    loadRecenzije(korisnik);
 }
 
 async function loadRatings(korisnik) {
@@ -79,6 +80,33 @@ function createRatingCard(rating,author) {
                 <label for="star1">★</label>
             </div>`;
     return ratingCard;
+}
+
+async function loadRecenzije(korisnik) {
+    const q = query(collection(db, "recenzije"), where("idKorisnika", "==", korisnik.id));
+    const snapshot = await getDocs(q);
+    const reviewContainer = document.getElementById("review-container");
+
+    for (const revDoc of snapshot.docs) {
+        const r = revDoc.data();
+        const knjigaSnap = await getDoc(doc(db, "knjige", r.idKnjige));
+        const nazivKnjige = knjigaSnap.exists() ? knjigaSnap.data().naziv : "Непозната књига";
+        const card = createReviewCard(r, nazivKnjige);
+        reviewContainer.appendChild(card);
+    }
+}
+
+function createReviewCard(recenzija, nazivKnjige) {
+    const card = document.createElement("div");
+    card.classList.add("review");
+    card.innerHTML = `
+        <div class="review-header">
+            <a class="nav-link big" href="knjiga.html?id=${recenzija.idKnjige}">${nazivKnjige}</a>
+            <p class="text">${recenzija.datum}</p>
+        </div>
+        <p class="text faded">${recenzija.tekst}</p>
+    `;
+    return card;
 }
 
 loadProfile();

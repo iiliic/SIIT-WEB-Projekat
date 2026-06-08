@@ -93,3 +93,9 @@
 .review:last-child {
     border-bottom: none;
 }
+
+.review-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
