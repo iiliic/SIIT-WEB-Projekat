@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDoc, getDocs, doc, query, where} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDoc, getDocs, doc, query, where, addDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
@@ -72,14 +72,14 @@ async function loginValidation(e) {
     const password = document.getElementById("login-lozinka").value.trim();
 
     if (!username || !password) {
-        alert("Popuni sva polja");
+        showToast("Попуните сва поља");
         return;
     }
 
     const answer = await checkLogin(username, password);
 
     if (!answer) {
-        alert("Pogrešno korisničko ime ili lozinka");
+        showToast("Погрешно корисничко име или лозинка");
         return;
     }
 
@@ -89,6 +89,7 @@ async function loginValidation(e) {
 }
 
 function addSignin() {
+    
   const header= document.getElementById("header-right");
   const button = document.createElement("button");
   button.id = "openSignin";
@@ -105,13 +106,44 @@ function addSignin() {
             </div>
             <div class="popup-content">
             <form id="signinForm">
-                <div class="label-above-input">
-                    <label for="signin-ime" class="text">Име:</label>
-                    <input type="text" id="signin-ime" name="ime" class="input-style"><br>
+                <div class="inline">
+                    <div class="label-above-input">
+                        <label for="signin-ime" class="text">Корисничко име:</label>
+                        <input type="text" id="signin-ime" name="username" class="input-style"><br>
+                    </div>
+                    <div class="label-above-input">
+                        <label for="signin-lozinka" class="text">Лозинка:</label>
+                        <input type="password" id="signin-lozinka" name="password" class="input-style"><br>
+                    </div>
+                </div><br>
+                <p class="text"> Информације: </p><br>
+                <div class="inline">
+                    <div class="label-above-input">
+                        <label for="ime" class="text">Име:</label>
+                        <input type="text" id="ime" name="ime" class="input-style"><br>
+                    </div>
+                    <div class="label-above-input">
+                        <label for="prezime" class="text">Презиме:</label>
+                        <input type="text" id="prezime" name="prezime" class="input-style"><br>
+                    </div>
+                    <div class="label-above-input">
+                        <label for="datum" class="text">Датум Рођења:</label>
+                        <input type="text" id="datum" name="datum" class="input-style"><br>
+                    </div>
                 </div>
-                <div class="label-above-input">
-                    <label for="signin-lozinka" class="text">Лозинка:</label>
-                    <input type="password" id="signin-lozinka" name="lozinka" class="input-style"><br>
+                <div class="inline">
+                    <div class="label-above-input">
+                        <label for="adresa" class="text">Адреса:</label>
+                        <input type="text" id="adresa" name="adresa" class="input-style"><br>
+                    </div>
+                    <div class="label-above-input">
+                        <label for="email" class="text">Имејл:</label>
+                        <input type="text" id="email" name="email" class="input-style"><br>
+                    </div>
+                    <div class="label-above-input">
+                        <label for="zanimanje" class="text">Занимање:</label>
+                        <input type="text" id="zanimanje" name="zanimanje" class="input-style"><br>
+                    </div>
                 </div>
                 <div class="popup-button-container">
                     <button type="submit" class="button-style">Региструј се</button>
@@ -120,6 +152,81 @@ function addSignin() {
             </div>
         </div>
     </div>`;
+}
+
+async function checkSignin(korisnickoIme) {
+    const q = query(collection(db, "korisnici"), where("korisnickoIme", "==", korisnickoIme));
+
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+        return true;
+    }
+
+    return false;
+}
+
+async function signinValidation(e){
+    e.preventDefault();
+
+    const username = document.getElementById("signin-ime").value.trim();
+    const password = document.getElementById("signin-lozinka").value.trim();
+
+    if (!username || !password) {
+        showToast("Попуните сва битна поља (Корисничко име и лозинка).");
+        return;
+    }
+
+    const answer = await checkSignin(username);
+
+    if (!answer) {
+        showToast("Корисничко име је заузето.");
+        return;
+    }
+
+    const data = infoValidation(username,password);
+    if(data){
+        console.log(data);
+        await addDoc(collection(db, "korisnici"), data);
+        sessionStorage.setItem("username", username);
+        location.reload();
+    }
+}
+
+function infoValidation(username,password){
+    const form = document.getElementById("signinForm")
+    const ime = form.querySelector('[name="ime"]').value;
+    const prezime = form.querySelector('[name="prezime"]').value;
+    const datum = form.querySelector('[name="datum"]').value;
+    const adresa = form.querySelector('[name="adresa"]').value;
+    const email = form.querySelector('[name="email"]').value;
+    const zanimanje = form.querySelector('[name="zanimanje"]').value;
+
+    console.log(datum);
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (datum!="" && !dateRegex.test(datum)) {
+        showToast("Aко сте унели датум рођења, унесите прави формат (ГГГГ-ММ-ДД).");
+        return null;
+    }
+
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (email!="" && !emailRegex.test(email)) {
+        showToast("Aко сте унели емаил, унесите га правилно.");
+        return null;
+    }
+
+    const data ={
+        ime:ime,
+        prezime:prezime,
+        datumRodjenja:datum,
+        email:email,
+        zanimanje:zanimanje,
+        adresa:adresa,
+        korisnickoIme:username,
+        lozinka:password
+    };
+
+    return data;
 }
 
 function addSignout(){
@@ -227,8 +334,10 @@ function main(){
       signin.classList.remove("show");
     };
 
-    const form = document.getElementById("loginForm");
-    form.addEventListener("submit", loginValidation);
+    const loginForm = document.getElementById("loginForm");
+    loginForm.addEventListener("submit", loginValidation);
+    const signinForm = document.getElementById("signinForm");
+    signinForm.addEventListener("submit", signinValidation);
   }
 
   const logo = document.getElementById("logo-container");
