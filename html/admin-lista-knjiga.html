@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
+ 
 <header>
     <div class="logo-container" id="logo-container">
         <img src="../content/Logo.png" alt="Logo" class="logo">
@@ -16,33 +16,192 @@
     <div class="header-right" id="header-right">
     </div>
 </header>
-
-    <div class="sidebar">
-        <div class="sidebar-content">
-                <div class="navigation-part">
-                    <p class="text big">Навигација</p>
-                    <div class="nav-links">
-                        <a href="profile.html" class="nav-link">➜ Профил</a>
-                        <a href="lista-knjiga.html" class="nav-link">➜ Књиге</a>
-                        <a href="admin-lista-knjiga.html" class="nav-link active"> ➜ Админ књиге</a>
-                        <a href="author-list.html" class="nav-link">➜ Аутори</a>
-                        <a href="author-admin-list.html" class="nav-link "> ➜ Админ аутори</a>
-                    </div>
-                </div>
-
-            <div class="function-part">
-                <p class="text big">Опције</p>
-                    <div class="function-list">
-                        <button class="button-style">Додај</button>
-                        <button class="button-style">Измени</button>
-                        <button class="button-style">Обриши</button>
-                    </div>
+ 
+<div class="sidebar">
+    <div class="sidebar-content">
+        <div class="navigation-part">
+            <p class="text big">Навигација</p>
+            <div class="nav-links">
+                <a href="profile.html" class="nav-link">➜ Профил</a>
+                <a href="lista-knjiga.html" class="nav-link">➜ Књиге</a>
+                <a href="admin-lista-knjiga.html" class="nav-link active"> ➜ Админ књиге</a>
+                <a href="author-list.html" class="nav-link">➜ Аутори</a>
+                <a href="author-admin-list.html" class="nav-link"> ➜ Админ аутори</a>
+            </div>
+        </div>
+ 
+        <div class="function-part">
+            <p class="text big">Опције</p>
+            <div class="function-list">
+                <button class="button-style" id="btn-dodaj">Додај</button>
+                <button class="button-style" id="btn-izmeni">Измени</button>
+                <button class="button-style" id="btn-obrisi">Обриши</button>
             </div>
         </div>
     </div>
-
+</div>
+ 
+<div class="modal-overlay" id="modal-dodaj">
+    <div class="modal-box">
+        <div class="modal-header">
+            <p class="text big">Додај књигу</p>
+            <button class="button-style modal-close" data-modal="modal-dodaj">✕</button>
+        </div>
+        <form id="forma-dodaj" novalidate>
+            <div class="modal-fields">
+                <div class="field-group">
+                    <label class="text field-label">Назив <span class="req">*</span></label>
+                    <input type="text" id="d-naziv" class="input-style2" placeholder="нпр. Злочин и казна">
+                    <span class="field-error" id="err-d-naziv"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">Жанр <span class="req">*</span></label>
+                    <select id="d-zanr" class="input-style2">
+                        <option value="">↓ одабери </option>
+                        <option>Класика</option>
+                        <option>Наука</option>
+                        <option>Филозофија</option>
+                        <option>Научна фантастика</option>
+                        <option>Биографија</option>
+                        <option>Књижевност</option>
+                        <option>Бизнис</option>
+                        <option>Технологија</option>
+                        <option>Психологија</option>
+                        <option>Историја</option>
+                        <option>Поезија</option>
+                    </select>
+                    <span class="field-error" id="err-d-zanr"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">Формат <span class="req">*</span></label>
+                    <select id="d-format" class="input-style2">
+                        <option value="">↓ одабери</option>
+                        <option>Тврди повез</option>
+                        <option>Меки повез</option>
+                        <option>Е-књига </option>
+                    </select>
+                    <span class="field-error" id="err-d-format"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">Цена (RSD) <span class="req">*</span></label>
+                    <input type="text" id="d-cena" class="input-style2" placeholder="нпр. 1200">
+                    <span class="field-error" id="err-d-cena"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">Број страна <span class="req">*</span></label>
+                    <input type="text" id="d-strane" class="input-style2" placeholder="нпр. 320">
+                    <span class="field-error" id="err-d-strane"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">ИД аутора <span class="req">*</span></label>
+                    <input type="text" id="d-idautora" class="input-style2" placeholder="нпр. abc123">
+                    <span class="field-error" id="err-d-idautora"></span>
+                </div>
+                <div class="field-group field-group--full">
+                    <label class="text field-label">ISBN <span class="req">*</span></label>
+                    <input type="text" id="d-isbn" class="input-style2" placeholder="нпр. 978-1234567890">
+                    <span class="field-error" id="err-d-isbn"></span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="button-style modal-close" data-modal="modal-dodaj">Откажи</button>
+                <button type="submit" class="button-style btn-primary">Додај</button>
+            </div>
+        </form>
+    </div>
+</div>
+ 
+<!-- ===== MODAL: IZMENI ===== -->
+<div class="modal-overlay" id="modal-izmeni">
+    <div class="modal-box">
+        <div class="modal-header">
+            <p class="text big">Измени књигу</p>
+            <button class="button-style modal-close" data-modal="modal-izmeni">✕</button>
+        </div>
+        <form id="forma-izmeni" novalidate>
+            <div class="modal-fields">
+                <div class="field-group">
+                    <label class="text field-label">Назив <span class="req">*</span></label>
+                    <input type="text" id="i-naziv" class="input-style2">
+                    <span class="field-error" id="err-i-naziv"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">Жанр <span class="req">*</span></label>
+                    <select id="i-zanr" class="input-style2">
+                        <option value="">↓ одабери</option>
+                        <option>Класика</option>
+                        <option>Наука</option>
+                        <option>Филозофија</option>
+                        <option>Научна фантастика</option>
+                        <option>Биографија</option>
+                        <option>Књижевност</option>
+                        <option>Бизнис</option>
+                        <option>Технологија</option>
+                        <option>Психологија</option>
+                        <option>Историја</option>
+                        <option>Поезија</option>
+                    </select>
+                    <span class="field-error" id="err-i-zanr"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">Формат <span class="req">*</span></label>
+                    <select id="i-format" class="input-style2">
+                        <option value="">↓ одабери</option>
+                        <option>Тврди pовез</option>
+                        <option>Меки повез</option>
+                        <option>Е-књига </option>
+                    </select>
+                    <span class="field-error" id="err-i-format"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">Цена (RSD) <span class="req">*</span></label>
+                    <input type="text" id="i-cena" class="input-style2">
+                    <span class="field-error" id="err-i-cena"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">Број страна <span class="req">*</span></label>
+                    <input type="text" id="i-strane" class="input-style2">
+                    <span class="field-error" id="err-i-strane"></span>
+                </div>
+                <div class="field-group">
+                    <label class="text field-label">ИД аутора <span class="req">*</span></label>
+                    <input type="text" id="i-idautora" class="input-style2">
+                    <span class="field-error" id="err-i-idautora"></span>
+                </div>
+                <div class="field-group field-group--full">
+                    <label class="text field-label">ISBN <span class="req">*</span></label>
+                    <input type="text" id="i-isbn" class="input-style2">
+                    <span class="field-error" id="err-i-isbn"></span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="button-style modal-close" data-modal="modal-izmeni">Откажи</button>
+                <button type="submit" class="button-style btn-primary">Сачувај</button>
+            </div>
+        </form>
+    </div>
+</div>
+ 
+<!-- ===== MODAL: OBRISI (potvrda) ===== -->
+<div class="modal-overlay" id="modal-obrisi">
+    <div class="modal-box modal-box--small">
+        <div class="modal-header">
+            <p class="text big">Потврди брисање</p>
+            <button class="button-style modal-close" data-modal="modal-obrisi">✕</button>
+        </div>
+        <div class="modal-confirm-body">
+            <p class="text">Да ли сте сигурни да желите да обришете књигу:</p>
+            <p class="text big thick" id="obrisi-naziv">—</p>
+            <p class="text red">Ова акција не може да се поништи.</p>
+        </div>
+        <div class="modal-actions">
+            <button class="button-style modal-close" data-modal="modal-obrisi">Откажи</button>
+            <button class="button-style btn-danger" id="btn-potvrdi-brisanje">Обриши</button>
+        </div>
+    </div>
+</div>
+ 
 <main>
-    <!-- DEO ZA SEARCH -->
     <div class="search-hero">
         <h1 class="hero-title">Претрага књига за промену</h1>
         <div class="search-bar-main">
@@ -52,12 +211,10 @@
             </button>
         </div>
     </div>
-
+ 
     <h1 class="all-books-title">Све књиге</h1>
-
-
+ 
     <div class="table-container">
-    <!-- HEADER -->
         <div class="table-header">
             <div class="table-element"><p class="text">Назив</p></div>
             <div class="table-element"><p class="text">Жанр</p></div>
@@ -67,14 +224,10 @@
             <div class="table-element"><p class="text">ИД Аутора</p></div>
             <div class="table-element"><p class="text">ISBN број</p></div>
         </div>
-
-        <!-- REDOVI -->
-        <div  id="tableBody">
-            <!-- Dinamički generisani redovi će se pojaviti ovde -->
-        </div>
-
+        <div id="tableBody"></div>
+    </div>
 </main>
-
+ 
 <script type="module" src="../js/function.js"></script>
 <script type="module" src="../js/admin-lista-knjiga.js"></script>
 </body>

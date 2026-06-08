@@ -123,3 +123,135 @@ main {
     display: flex;
     flex-direction: column;
 }
+ 
+/* ===== MODALI ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1100;
+    align-items: center;
+    justify-content: center;
+}
+.modal-overlay.modal-show {
+    display: flex;
+}
+ 
+.modal-box {
+    background-color: #161412;
+    border: 1px solid #E8B84B;
+    border-radius: 8px;
+    width: 680px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(232, 184, 75, 0.3),
+                0 0 60px rgba(232, 184, 75, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+ 
+.modal-box--small {
+    width: 420px;
+}
+ 
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+}
+ 
+.modal-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 24px;
+}
+ 
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+ 
+.field-group--full {
+    grid-column: 1 / -1;
+}
+ 
+.field-label {
+    font-size: 14px !important;
+}
+ 
+.req {
+    color: #E8B84B;
+}
+ 
+.field-error {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: #e05c5c;
+    min-height: 16px;
+}
+ 
+.input-error {
+    border-color: #e05c5c ;
+}
+ 
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px;
+}
+ 
+.btn-primary {
+    background-color: #E8B84B !important;
+    color: #0a0907 !important;
+}
+.btn-primary:hover {
+    box-shadow: 0 0 10px #E8B84B, 0 0 20px #E8B84B !important;
+}
+ 
+.btn-danger {
+    border-color: #e05c5c !important;
+    color: #e05c5c !important;
+}
+.btn-danger:hover {
+    background-color: #e05c5c !important;
+    color: #fff !important;
+    box-shadow: 0 0 10px #e05c5c !important;
+}
+ 
+.red {
+    color: #e05c5c;
+}
+
+.modal-confirm-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px;
+}
+
+.input-style2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #E8B84B;  
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #E8B84B;
+    background-color: #0a0907;
+    transition: all 0.3s ease;
+}
+.input-style2::placeholder {
+    
+    color: #e8b94b46;
+}
+
+select.input-style2 {
+    appearance: none;
+    -webkit-appearance: none;
+}
