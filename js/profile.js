@@ -33,7 +33,6 @@ async function loadProfile() {
     const korisnik = { id: snapshot.docs[0].id, ...snapshot.docs[0].data() };
     fill(korisnik);
     loadRatings(korisnik);
-    //TODO: ilija dodaj reviews.
     loadRecenzije(korisnik);
 }
 
