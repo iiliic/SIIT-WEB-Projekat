@@ -1,6 +1,6 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {getFirestore, collection, getDocs} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
+ 
 const firebaseConfig = {
     apiKey: "AIzaSyCuqF5p1WuNUP4WJ5PspU7tl_1N4mrIyAU",
     authDomain: "siit-ilija-i-vule.firebaseapp.com",
@@ -10,26 +10,24 @@ const firebaseConfig = {
     appId: "1:561148505182:web:d39761a1be9f767d68d8cf",
     measurementId: "G-L1TXJPJY6Y"
 };
-
+ 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
-
+ 
 // ---- SELEKCIJA REDA ----
-function handleClick(event) {
-    const clickedRow = event.currentTarget;
+function handleClick(event, knjiga) {
     removeSelection();
-    clickedRow.classList.add("selected");
+    event.currentTarget.classList.add("selected");
+    selectedKnjiga = knjiga;
 }
-
+ 
 function removeSelection() {
-    document.querySelectorAll(".table-row").forEach(row => {
-        row.classList.remove("selected");
-    });
+    document.querySelectorAll(".table-row").forEach(row => row.classList.remove("selected"));
 }
-
-// ---- UCITAVANJE KNJIGA IZ FIREBASE ----
+ 
+// ---- UCITAVANJE KNJIGA ----
 async function loadKnjige() {
-    const container = document.getElementById("tableBody");
+    const container = id("tableBody");
     const snapshot = await getDocs(collection(db, "knjige"));
     snapshot.forEach((doc) => {
         const knjiga = { id: doc.id, ...doc.data() };
@@ -37,11 +35,11 @@ async function loadKnjige() {
         container.appendChild(row);
     });
 }
-
+ 
 function createRow(knjiga) {
     const row = document.createElement("div");
     row.classList.add("table-row");
-    row.addEventListener("click", handleClick);
+    row.addEventListener("click", (e) => handleClick(e, knjiga));
     row.innerHTML =
         `<div class="table-element"><p class="text">${knjiga.naziv}</p></div>
         <div class="table-element"><p class="text">${knjiga.zanr}</p></div>
@@ -52,17 +50,162 @@ function createRow(knjiga) {
         <div class="table-element"><p class="text">${knjiga.isbn}</p></div>`;
     return row;
 }
-
+ 
 // ---- PRETRAGA ----
 function pretraziKnjige() {
-    const query = document.getElementById("pretraga").value.trim().toLowerCase();
+    const query = id("pretraga").value.trim().toLowerCase();
     document.querySelectorAll(".table-row").forEach(row => {
         const naziv = row.querySelector(".table-element p").textContent.toLowerCase();
         row.style.display = naziv.includes(query) ? "grid" : "none";
     });
 }
+ 
+id("pretraga").addEventListener("keyup", pretraziKnjige);
 
-document.getElementById("pretraga").addEventListener("keyup", pretraziKnjige);
-
-
+// ---- TRENUTNO SELEKTOVANA KNJIGA ----
+let selectedKnjiga = null;
+ 
+// ---- REGEX PRAVILA ----
+const REGEX = {
+    naziv:    /^.{2,100}$/,
+    cena:     /^\d{1,7}(\.\d{1,2})?$/,
+    strane:   /^\d{1,5}$/,
+    idAutora: /^[a-zA-Z0-9_-]{1,50}$/,
+    isbn:     /^978-\d{10}$/
+};
+ 
+const PORUKE = {
+    naziv:    "Назив мора имати 2–100 знакова.",
+    cena:     "Цена мора бити позитиван број.",
+    strane:   "Број страна мора бити цео број.",
+    idAutora: "ИД аутора може садржати само слова и бројеве (aut001)",
+    isbn:     "ISBN мора бити у формату 978-XX XX XX XX XX."
+};
+ 
+// ---- VALIDACIJA ----
+function validateField(inputEl, errorEl, regex, poruka) {
+    const val = inputEl.value.trim();
+    if (!val || !regex.test(val)) {
+        errorEl.textContent = poruka;
+        inputEl.classList.add("input-error");
+        return false;
+    }
+    errorEl.textContent = "";
+    inputEl.classList.remove("input-error");
+    return true;
+}
+ 
+function validateSelect(selectEl, errorEl) {
+    if (!selectEl.value) {
+        errorEl.textContent = "Молимо одаберите вредност.";
+        selectEl.classList.add("input-error");
+        return false;
+    }
+    errorEl.textContent = "";
+    selectEl.classList.remove("input-error");
+    return true;
+}
+ 
+function validateForma(prefix) {
+    const p = prefix;
+    let ok = true;
+    ok = validateField(id(p+"-naziv"),    id("err-"+p+"-naziv"),    REGEX.naziv,    PORUKE.naziv)    && ok;
+    ok = validateSelect(id(p+"-zanr"),    id("err-"+p+"-zanr"))                                      && ok;
+    ok = validateSelect(id(p+"-format"),  id("err-"+p+"-format"))                                    && ok;
+    ok = validateField(id(p+"-cena"),     id("err-"+p+"-cena"),     REGEX.cena,     PORUKE.cena)     && ok;
+    ok = validateField(id(p+"-strane"),   id("err-"+p+"-strane"),   REGEX.strane,   PORUKE.strane)   && ok;
+    ok = validateField(id(p+"-idautora"), id("err-"+p+"-idautora"), REGEX.idAutora, PORUKE.idAutora) && ok;
+    ok = validateField(id(p+"-isbn"),     id("err-"+p+"-isbn"),     REGEX.isbn,     PORUKE.isbn)     && ok;
+    return ok;
+}
+ 
+function id(s) { return document.getElementById(s); }
+ 
+// ---- MODAL KONTROLA ----
+function openModal(modalId) {
+    id(modalId).classList.add("modal-show");
+}
+ 
+function closeModal(modalId) {
+    id(modalId).classList.remove("modal-show");
+}
+ 
+document.querySelectorAll(".modal-close").forEach(btn => {
+    btn.addEventListener("click", () => closeModal(btn.dataset.modal));
+});
+ 
+// ---- DUGMAD U SIDEBARU ----
+id("btn-dodaj").addEventListener("click", () => {
+    id("forma-dodaj").reset();
+    document.querySelectorAll("#modal-dodaj .field-error").forEach(el => el.textContent = "");
+    document.querySelectorAll("#modal-dodaj .input-error").forEach(el => el.classList.remove("input-error"));
+    openModal("modal-dodaj");
+});
+ 
+id("btn-izmeni").addEventListener("click", () => {
+    if (!selectedKnjiga) {
+        alert("Прво означите књигу у табели.");
+        return;
+    }
+    popuniFormuIzmeni(selectedKnjiga);
+    openModal("modal-izmeni");
+});
+ 
+id("btn-obrisi").addEventListener("click", () => {
+    if (!selectedKnjiga) {
+        alert("Прво означите књигу у табели.");
+        return;
+    }
+    id("obrisi-naziv").textContent = selectedKnjiga.naziv;
+    openModal("modal-obrisi");
+});
+ 
+// ---- POPUNI FORMU IZMENI ----
+function popuniFormuIzmeni(knjiga) {
+    id("i-naziv").value    = knjiga.naziv    ?? "";
+    id("i-cena").value     = knjiga.cena     ?? "";
+    id("i-strane").value   = knjiga.brojStrana ?? "";
+    id("i-idautora").value = knjiga.idAutora ?? "";
+    id("i-isbn").value     = knjiga.isbn     ?? "";
+    setSelectValue("i-zanr",   knjiga.zanr);
+    setSelectValue("i-format", knjiga.format);
+    document.querySelectorAll("#modal-izmeni .field-error").forEach(el => el.textContent = "");
+    document.querySelectorAll("#modal-izmeni .input-error").forEach(el => el.classList.remove("input-error"));
+}
+ 
+function setSelectValue(selectId, value) {
+    const sel = id(selectId);
+    for (let opt of sel.options) {
+        if (opt.value === value) { sel.value = value; return; }
+    }
+    sel.value = "";
+}
+ 
+//  SUBMIT: DODAJ 
+id("forma-dodaj").addEventListener("submit", e => {
+    e.preventDefault();
+    if (!validateForma("d")) return;
+    // baza upis
+    alert("validirano lmaoo");
+    closeModal("modal-dodaj");
+});
+ 
+//  SUBMIT: IZMENI 
+id("forma-izmeni").addEventListener("submit", e => {
+    e.preventDefault();
+    if (!validateForma("i")) return;
+    // baza izmena
+    alert("validirano lmaoo");
+    closeModal("modal-izmeni");
+});
+ 
+//  POTVRDI BRISANJE 
+id("btn-potvrdi-brisanje").addEventListener("click", () => {
+    // baza brisanje
+    alert(`Брисање: "${selectedKnjiga.naziv}" ne radi jos lol`);
+    closeModal("modal-obrisi");
+    selectedKnjiga = null;
+    removeSelection();
+});
+ 
 loadKnjige();
