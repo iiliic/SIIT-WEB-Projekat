@@ -255,3 +255,13 @@ select.input-style2 {
     appearance: none;
     -webkit-appearance: none;
 }
+@media (max-width: 768px) {
+    .table-header,
+    .table-row {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .table-element:nth-child(n+4) {
+        display: none;
+    }
+}

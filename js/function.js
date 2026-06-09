@@ -340,9 +340,21 @@ function main(){
     signinForm.addEventListener("submit", signinValidation);
   }
 
-  const logo = document.getElementById("logo-container");
+  const logo = document.getElementById("logo");
   logo.onclick = () => goToListaKnjiga();
 
+    const hamburger = document.createElement("button");
+    hamburger.className = "hamburger";
+    hamburger.innerHTML = `<span></span><span></span><span></span>`;
+
+    hamburger.onclick = () => {
+    document.querySelector(".sidebar").classList.toggle("open");
+    };
+    document.querySelector(".logo-container").appendChild(hamburger);
+
+    if (window.innerWidth <= 600) {
+    document.querySelector(".logo").src = "../content/minilogo.png";
+    }
 }
 
 main();

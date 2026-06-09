@@ -267,3 +267,64 @@ p{
                 0 0 20px #E8B84B;
     color:#E8B84B;
 }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.hamburger span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #E8B84B;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .sidebar {
+        left: -350px;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    main {
+        margin-left: 0 !important;
+        padding: 20px;
+    }
+
+    header {
+        height: 70px;
+    }
+
+    .sidebar {
+        top: 70px;
+        height: calc(100% - 70px);
+    }
+
+    main {
+        margin-top: 70px !important;
+    }
+
+    .button-style {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+}
+@media (max-width: 600px) {
+    
+    }
