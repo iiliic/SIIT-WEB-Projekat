@@ -350,9 +350,9 @@ function main(){
     hamburger.onclick = () => {
     document.querySelector(".sidebar").classList.toggle("open");
     };
-    document.querySelector(".logo-container").appendChild(hamburger);
+    document.querySelector(".logo-container").before(hamburger);
 
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 875) {
     document.querySelector(".logo").src = "../content/minilogo.png";
     }
 }

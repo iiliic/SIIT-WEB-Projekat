@@ -324,7 +324,12 @@ p{
         font-size: 13px;
         padding: 6px 10px;
     }
-}
-@media (max-width: 600px) {
-    
+
+    header {
+    justify-content: flex-start;
+    gap: 15px;
     }
+    .header-right {
+    margin-left: auto;
+    }
+}
