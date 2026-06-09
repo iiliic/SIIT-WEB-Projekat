@@ -39,7 +39,7 @@ async function loadBook() {
 
 async function getAutorIme(idAutora) {
     const autorSnap = await getDoc(doc(db, "autori", idAutora));
-    return autorSnap.exists() ? `${autorSnap.data().ime} ${autorSnap.data().prezime}`  : "Nepoznat autor";
+    return autorSnap.exists() ? `${autorSnap.data().ime} ${autorSnap.data().prezime}`  : "Непознат аутор";
 }
 
 // RECENZIJE

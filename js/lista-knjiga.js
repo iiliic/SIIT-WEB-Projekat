@@ -24,7 +24,6 @@ async function loadBooks() {
 
     for (const bookDoc of snapshot.docs) {
         const book = { id: bookDoc.id, ...bookDoc.data() };
-        book.imeAutora = await getAutorIme(book.idAutora);
         sveKnjige.push(book); // dodavanje 
         const card = createBookCard(book);
         container.appendChild(card);
@@ -38,17 +37,11 @@ function createBookCard(book, pretraga = "") {
     button.innerHTML = 
         `<img src="${book.slike[0]}" alt="knjiga" class="book-image">
         <h3 class="name">${highlight(book.naziv, pretraga)}</h3>
-        <p class="name">${book.imeAutora}</p>
         <p>${book.zanr} - ${book.format}</p>
         <p>Cena: ${book.cena} RSD</p>
         `;
 
     return button;
-}
-
-async function getAutorIme(idAutora) {
-    const autorSnap = await getDoc(doc(db, "autori", idAutora));
-    return autorSnap.exists() ? `${autorSnap.data().ime} ${autorSnap.data().prezime}`  : "Nepoznat autor";
 }
 
 function filtriraj() {
@@ -79,6 +72,5 @@ function highlight(text, query) {
     const regex = new RegExp(`(${query})`   , 'gi');           // g da ne bi stalo posle prvog, a i je ignore za velika/mala slova
     return text.replace(regex, '<span class="marked">$1</span>'); 
 }
-// ako se searchuje pre nego sto se ucitaju sve knjige knjige koje se jos ucitavaju ce se dodavati pored searchuvane, anlaki
 
 loadBooks();
