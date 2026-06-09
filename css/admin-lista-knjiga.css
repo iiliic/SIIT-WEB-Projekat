@@ -95,7 +95,7 @@ main {
 }
 
 .table-element {
-    padding: 5px 15px;
+    padding: 5px 10px;
 }
 
 .table-element p {
@@ -104,9 +104,9 @@ main {
 }
 
 .table-header, .table-row {
-     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
-    min-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.7fr 0.7fr 0.5fr 0.7fr 1fr;
+    
 }
 
 .table-container {
@@ -255,13 +255,90 @@ select.input-style2 {
     appearance: none;
     -webkit-appearance: none;
 }
-@media (max-width: 768px) {
-    .table-header,
-    .table-row {
-        grid-template-columns: 2fr 1fr 1fr;
-    }
+
+.table-element:first-child p {
+    max-width: 150px;
+    word-break: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.table-container {
+    width: 90%;
+}
+
+/* SMARANJE SA TABELOM SVE  */
+@media (max-width: 1220px) {
+    .table-header, .table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.7fr 1fr ;
+}
+
+    .table-element:nth-child(n+7) {
+            display: none;
+        }
+}
+
+@media (max-width: 1110px) {
+    .table-header, .table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.7fr ;
+}
+
+    .table-element:nth-child(n+6) {
+            display: none;
+        }
+}
+
+@media (max-width: 700px) {
+    .table-header, .table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+}
+
+    .table-element:nth-child(n+5) {
+            display: none;
+        }
+}
+
+@media (max-width: 550px) {
+    .table-header, .table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+}
 
     .table-element:nth-child(n+4) {
-        display: none;
+            display: none;
+        }
+}
+
+@media (max-width: 450px) {
+    .table-header, .table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+}
+
+    .table-element:nth-child(n+3) {
+            display: none;
+        }
+}
+
+/* POP UPS */
+@media (max-width: 600px) {     
+    .modal-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-box {
+        width: 95vw;
+    }
+
+    .input-style2 {
+        font-size: 14px;
+        padding: 8px;
     }
 }
