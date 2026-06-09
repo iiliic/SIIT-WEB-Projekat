@@ -6,7 +6,7 @@ main {
     align-items: flex-start;
 }
 body{
-    margin: 40px; 
+    
     padding: 0px;
     background-color: #0a0907;
 }
@@ -27,11 +27,12 @@ body{
 /* ===== GORNJI DEO: slika + info ===== */
 .knjiga-hero {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 60px;
     align-items: flex-start;  
     padding-bottom: 30px;  
     padding-top: 15px;
-    border-bottom: 2px solid #E8B84B;
 }
 
 .knjiga-cover {
@@ -52,7 +53,6 @@ body{
 .knjiga-info {
     display: flex;
     flex-direction: column;
-    border-right: 2px solid #E8B84B;
     padding-right: 30px;
 }
 
@@ -120,6 +120,11 @@ body{
 /* ===== OPIS ===== */
 .knjiga-opis {
     margin-top: 30px;
+    order: 3;
+    width: 100%;
+    border-bottom: 2px solid #E8B84B;
+    padding-bottom: 30px;
+    max-width: 800px;
 }
 
 .knjiga-opis p {
@@ -129,6 +134,8 @@ body{
     line-height: 1.8;
     margin-bottom: 12px;
     max-width: 750px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 /* ===== SECTION TITLE ===== */
@@ -208,4 +215,53 @@ body{
     color: #cccccc;
     line-height: 1.7;
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    body {
+    margin: 0;
+    }
+    
+    main {
+        margin-left: 0 !important;
+        margin-top: 80px !important;
+        padding: 15px;
+    }
+
+    .knjiga-hero {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .knjiga-cover {
+        width: 60%;
+        min-width: unset;
+    }
+
+    .knjiga-info {
+        border-right: none;
+        border-bottom: 2px solid #E8B84B;
+        padding-right: 0;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .knjiga-opis {
+        width: 100%;
+    }
+
+    .knjiga-opis p {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1050px) {
+    .recenzije-lista {
+        grid-template-columns: 1fr;
+        
+    }
+    .recenzija-input {
+    width: 90%;
+}
 }
