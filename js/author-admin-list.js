@@ -77,7 +77,7 @@ function search() {
     const query = document.getElementById("pretraga").value.trim().toLowerCase();
     document.querySelectorAll(".item").forEach(item => {
         const naziv = item.querySelector(".item-element:nth-child(2) p").textContent.toLowerCase();
-        item.style.display = naziv.includes(query) ? "flex" : "none";
+        item.style.display = naziv.includes(query) ? "grid" : "none";
     });
 }
 
