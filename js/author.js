@@ -24,7 +24,6 @@ function startSlideshow(images) {
     const img1 = document.getElementById("img1");
     const img2 = document.getElementById("img2");
 
-    // Preload images
     images.forEach(url => {
         const img = new Image();
         img.src = url;
