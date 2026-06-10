@@ -285,6 +285,21 @@ export function goToAuthor(authorId) {
   window.location.href = `author.html?id=${authorId}`;
 }
 
+function setLogo(){
+    if (window.innerWidth <= 370){
+        document.querySelector(".logo").src = "../content/nologo.png";
+    }
+    else if (window.innerWidth <= 500) {
+        document.querySelector(".logo").src = "../content/micrologo.png";
+    }
+    else if (window.innerWidth <= 875) {
+        document.querySelector(".logo").src = "../content/minilogo.png";
+    }
+    else{
+        document.querySelector(".logo").src = "../content/Logo.png";
+    }
+}
+
 function main(){
   if (sessionStorage.getItem("username")) {
     addSignout();
@@ -352,14 +367,8 @@ function main(){
     };
     document.querySelector(".logo-container").before(hamburger);
 
-    window.addEventListener("resize", () => {
-        if (window.innerWidth <= 875) {
-            document.querySelector(".logo").src = "../content/minilogo.png";
-        }
-        else{
-            document.querySelector(".logo").src = "../content/Logo.png";
-        }
-    });
+    setLogo();
+    window.addEventListener("resize", setLogo);
 }
 
 main();
