@@ -3,21 +3,23 @@
     flex-direction: column;
     padding-left: 20px ;
 }
+.search-part{
+    width: 85%;
+}
 .search{
     margin-top: 20px;
     margin-bottom: 20px;
 }
 .search-bar{
     display: flex;
-    justify-content:space-between;
     gap: 10px;
     height: 60px;
 }
 .search-bar>:first-child{
-    flex: 7;
+    width: 90%;
 }
 .search-bar>:last-child{
-    flex: 3;
+    width: 10%;
 }
 .function-list{
     margin-top: 20px;
@@ -88,7 +90,6 @@
 .table-header .item-element p{
     color: #0a0907;
 }
-
 
 textarea {
     resize: none;

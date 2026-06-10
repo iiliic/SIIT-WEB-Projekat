@@ -106,7 +106,7 @@ function addSignin() {
             </div>
             <div class="popup-content">
             <form id="signinForm">
-                <div class="inline">
+                <div>
                     <div class="label-above-input">
                         <label for="signin-ime" class="text">Корисничко име:</label>
                         <input type="text" id="signin-ime" name="username" class="input-style"><br>
@@ -117,7 +117,7 @@ function addSignin() {
                     </div>
                 </div><br>
                 <p class="text"> Информације: </p><br>
-                <div class="inline">
+                <div class="fields">
                     <div class="label-above-input">
                         <label for="ime" class="text">Име:</label>
                         <input type="text" id="ime" name="ime" class="input-style"><br>
@@ -130,8 +130,6 @@ function addSignin() {
                         <label for="datum" class="text">Датум Рођења:</label>
                         <input type="text" id="datum" name="datum" class="input-style"><br>
                     </div>
-                </div>
-                <div class="inline">
                     <div class="label-above-input">
                         <label for="adresa" class="text">Адреса:</label>
                         <input type="text" id="adresa" name="adresa" class="input-style"><br>
