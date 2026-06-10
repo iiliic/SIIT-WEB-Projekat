@@ -352,9 +352,14 @@ function main(){
     };
     document.querySelector(".logo-container").before(hamburger);
 
-    if (window.innerWidth <= 875) {
-    document.querySelector(".logo").src = "../content/minilogo.png";
-    }
+    window.addEventListener("resize", () => {
+        if (window.innerWidth <= 875) {
+            document.querySelector(".logo").src = "../content/minilogo.png";
+        }
+        else{
+            document.querySelector(".logo").src = "../content/Logo.png";
+        }
+    });
 }
 
 main();
