@@ -59,17 +59,17 @@
                     <label class="text field-label">Жанр <span class="req">*</span></label>
                     <select id="d-zanr" class="input-style2">
                         <option value="">↓ одабери </option>
-                        <option>Класика</option>
-                        <option>Наука</option>
-                        <option>Филозофија</option>
-                        <option>Научна фантастика</option>
-                        <option>Биографија</option>
-                        <option>Књижевност</option>
-                        <option>Бизнис</option>
-                        <option>Технологија</option>
-                        <option>Психологија</option>
-                        <option>Историја</option>
-                        <option>Поезија</option>
+                        <option value="Класика">Класика</option>
+                        <option value="Наука">Наука</option>
+                        <option value="Филозофија">Филозофија</option>
+                        <option value="Научна фантастика">Научна фантастика</option>
+                        <option value="Биографија">Биографија</option>
+                        <option value="Књижевност">Књижевност</option>
+                        <option value="Бизнис">Бизнис</option>
+                        <option value="Технологија">Технологија</option>
+                        <option value="Психологија">Психологија</option>
+                        <option value="Историја">Историја</option>
+                        <option value="Поезија">Поезија</option>
                     </select>
                     <span class="field-error" id="err-d-zanr"></span>
                 </div>
@@ -103,6 +103,16 @@
                     <input type="text" id="d-isbn" class="input-style2" placeholder="нпр. 978-1234567890">
                     <span class="field-error" id="err-d-isbn"></span>
                 </div>
+                <div class="field-group field-group--full">
+                    <label class="text field-label">Опис <span class="req">*</span></label>
+                    <textarea id="d-opis" class="input-style2" rows="3" placeholder="Кратак опис књиге"></textarea>
+                    <span class="field-error" id="err-d-opis"></span>
+                </div>
+                <div class="field-group field-group--full">
+                    <label class="text field-label">Слика (URL) <span class="req">*</span></label>
+                    <input type="text" id="d-slika" class="input-style2" placeholder="нпр. https://...">
+                    <span class="field-error" id="err-d-slika"></span>
+                </div>
             </div>
             <div class="modal-actions">
                 <button type="button" class="button-style modal-close" data-modal="modal-dodaj">Откажи</button>
@@ -130,17 +140,17 @@
                     <label class="text field-label">Жанр <span class="req">*</span></label>
                     <select id="i-zanr" class="input-style2">
                         <option value="">↓ одабери</option>
-                        <option>Класика</option>
-                        <option>Наука</option>
-                        <option>Филозофија</option>
-                        <option>Научна фантастика</option>
-                        <option>Биографија</option>
-                        <option>Књижевност</option>
-                        <option>Бизнис</option>
-                        <option>Технологија</option>
-                        <option>Психологија</option>
-                        <option>Историја</option>
-                        <option>Поезија</option>
+                        <option value="Класика">Класика</option>
+                        <option value="Наука">Наука</option>
+                        <option value="Филозофија">Филозофија</option>
+                        <option value="Научна фантастика">Научна фантастика</option>
+                        <option value="Биографија">Биографија</option>
+                        <option value="Књижевност">Књижевност</option>
+                        <option value="Бизнис">Бизнис</option>
+                        <option value="Технологија">Технологија</option>
+                        <option value="Психологија">Психологија</option>
+                        <option value="Историја">Историја</option>
+                        <option value="Поезија">Поезија</option>
                     </select>
                     <span class="field-error" id="err-i-zanr"></span>
                 </div>
@@ -173,6 +183,16 @@
                     <label class="text field-label">ISBN <span class="req">*</span></label>
                     <input type="text" id="i-isbn" class="input-style2">
                     <span class="field-error" id="err-i-isbn"></span>
+                </div>
+                <div class="field-group field-group--full">
+                    <label class="text field-label">Опис <span class="req">*</span></label>
+                    <textarea id="i-opis" class="input-style2" rows="3" placeholder="Кратак опис књиге"></textarea>
+                    <span class="field-error" id="err-i-opis"></span>
+                </div>
+                <div class="field-group field-group--full">
+                    <label class="text field-label">Слика (URL) <span class="req">*</span></label>
+                    <input type="text" id="i-slika" class="input-style2" placeholder="нпр. https://...">
+                    <span class="field-error" id="err-i-slika"></span>
                 </div>
             </div>
             <div class="modal-actions">

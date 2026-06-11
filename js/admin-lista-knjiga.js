@@ -1,5 +1,5 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {getFirestore, collection, getDocs} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getFirestore, collection, getDocs, doc, addDoc, updateDoc, deleteDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import {showToast} from "./function.js";
  
 const firebaseConfig = {
@@ -168,6 +168,8 @@ function popuniFormuIzmeni(knjiga) {
     id("i-strane").value   = knjiga.brojStrana ?? "";
     id("i-idautora").value = knjiga.idAutora ?? "";
     id("i-isbn").value     = knjiga.isbn     ?? "";
+    id("i-opis").value = knjiga.opis ?? "";
+    id("i-slika").value = knjiga.slike?.[0] ?? "";
     setSelectValue("i-zanr",   knjiga.zanr);
     setSelectValue("i-format", knjiga.format);
     document.querySelectorAll("#modal-izmeni .field-error").forEach(el => el.textContent = "");
@@ -183,30 +185,58 @@ function setSelectValue(selectId, value) {
 }
  
 //  SUBMIT: DODAJ 
-id("forma-dodaj").addEventListener("submit", e => {
+id("forma-dodaj").addEventListener("submit", async e => {
     e.preventDefault();
     if (!validateForma("d")) return;
     // baza upis
-    alert("validirano lmaoo");
+    await addDoc(collection(db, "knjige"), {
+        naziv:     id("d-naziv").value.trim(),
+        zanr:      id("d-zanr").value,
+        format:    id("d-format").value,
+        cena:      parseFloat(id("d-cena").value),
+        brojStrana: parseInt(id("d-strane").value),
+        idAutora:  id("d-idautora").value.trim(),
+        isbn:      id("d-isbn").value.trim(),
+        opis: id("d-opis").value.trim(),
+        slike:     [id("d-slika").value.trim()]
+    });
+    showToast("Књига је успешно додата.");
     closeModal("modal-dodaj");
+    location.reload();
 });
  
 //  SUBMIT: IZMENI 
-id("forma-izmeni").addEventListener("submit", e => {
+id("forma-izmeni").addEventListener("submit", async e => {
     e.preventDefault();
     if (!validateForma("i")) return;
     // baza izmena
-    alert("validirano lmaoo");
+    const docRef = doc(db, "knjige", selectedKnjiga.id);
+    await updateDoc(docRef, {
+        naziv:     id("i-naziv").value.trim(),
+        zanr:      id("i-zanr").value,
+        format:    id("i-format").value,
+        cena:      parseFloat(id("i-cena").value),
+        brojStrana: parseInt(id("i-strane").value),
+        idAutora:  id("i-idautora").value.trim(),
+        isbn:      id("i-isbn").value.trim(),
+        opis: id("i-opis").value.trim(),
+        slike:     id("i-slika").value.trim().split(",")
+    });
+
+    showToast("Књига је успешно измењена.");
     closeModal("modal-izmeni");
+    location.reload();
 });
  
 //  POTVRDI BRISANJE 
-id("btn-potvrdi-brisanje").addEventListener("click", () => {
+id("btn-potvrdi-brisanje").addEventListener("click", async () => {
     // baza brisanje
-    alert(`Брисање: "${selectedKnjiga.naziv}" ne radi jos lol`);
+    await deleteDoc(doc(db, "knjige", selectedKnjiga.id));
+    showToast(`Брисање: "${selectedKnjiga.naziv}" је успешно.`);
     closeModal("modal-obrisi");
     selectedKnjiga = null;
     removeSelection();
+    location.reload();
 });
  
 loadKnjige();

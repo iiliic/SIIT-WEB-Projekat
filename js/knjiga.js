@@ -27,7 +27,7 @@ async function fill(book) {
     document.getElementById("knjiga-br-strana").textContent = book.brojStrana;
     document.getElementById("knjiga-isbn").textContent = book.isbn;
     document.getElementById("knjiga-cena").textContent = book.cena + " RSD";
-    document.getElementById("knjiga-opis").textContent = book.opis;
+    document.getElementById("knjiga-opis").textContent = book.opis || "Нажалост, ова књига још увек нема опис, можете прочитати рецензије испод да бисте сазнали више о њој.";
     document.getElementById("knjiga-slika").src = book.slike[0];
 }
 
