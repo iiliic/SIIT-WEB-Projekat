@@ -77,7 +77,7 @@ function search() {
     const query = document.getElementById("pretraga").value.trim().toLowerCase();
     document.querySelectorAll(".item").forEach(item => {
         const naziv = item.querySelector(".item-element:nth-child(2) p").textContent.toLowerCase();
-        item.style.display = naziv.includes(query) ? "flex" : "none";
+        item.style.display = naziv.includes(query) ? "grid" : "none";
     });
 }
 
@@ -113,12 +113,12 @@ function addAdd(){
     popup.innerHTML =
     `<div class="popup-content-position">
             <div class="popup-header">
-                <p class="text huge">Додавање Аутора</p>
+                <p class="text big">Додавање Аутора</p>
                 <button id="cancelAdd" class="button-style">X</button>
             </div>
             <div class="popup-content">
             <form id="addForm">
-                <div class="inline">
+                <div class="fields">
                     <div class="label-above-input">
                         <label for="ime" class="text">Име:</label>
                         <input type="text" id="ime" name="ime" class="input-style">
@@ -131,8 +131,6 @@ function addAdd(){
                         <label for="menadzer" class="text">Број Менаџера:</label>
                         <input type="text" id="menadzer" name="menadzer" class="input-style">
                     </div>
-                </div><br>
-                <div class="inline">
                     <div class="label-above-input">
                         <label for="datum" class="text">Датум Рођења:</label>
                         <input type="text" id="datum" name="datum" class="input-style">
@@ -147,15 +145,19 @@ function addAdd(){
                     </div>
                 </div><br>
                 <p class="text">Статус:</p>
-                <div class="inline">
+                <div class="checkboxes">
+                        <div>
                         <input type="radio" id="status-aktivan" name="status" value="Активан">
                         <label for="status-aktivan" class="text">Активан</label>
-
+                        </div>
+                        <div>
                         <input type="radio" id="status-u-penziji" name="status" value="У пензији">
                         <label for="status-u-penziji" class="text">У пензији</label>
-
+                        </div>
+                        <div>
                         <input type="radio" id="status-preminuo" name="status" value="Преминуо">
                         <label for="status-preminuo" class="text">Преминуо</label>
+                        </div>
                 </div><br>
                 <div class="label-above-input">
                     <label for="biografija" class="text">Биографија:</label>
@@ -188,12 +190,12 @@ function addEdit(){
     popup.innerHTML =
     `<div class="popup-content-position">
             <div class="popup-header">
-                <p class="text huge">Измена Аутора</p>
+                <p class="text big">Измена Аутора</p>
                 <button id="cancelEdit" class="button-style">X</button>
             </div>
             <div class="popup-content">
             <form id="editForm">
-                <div class="inline">
+                <div class="fields">
                     <div class="label-above-input">
                         <label for="ime" class="text">Име:</label>
                         <input type="text" id="ime" name="ime" class="input-style">
@@ -206,8 +208,6 @@ function addEdit(){
                         <label for="menadzer" class="text">Број Менаџера:</label>
                         <input type="text" id="menadzer" name="menadzer" class="input-style">
                     </div>
-                </div><br>
-                <div class="inline">
                     <div class="label-above-input">
                         <label for="datum" class="text">Датум Рођења:</label>
                         <input type="text" id="datum" name="datum" class="input-style">
@@ -222,15 +222,19 @@ function addEdit(){
                     </div>
                 </div><br>
                 <p class="text">Статус:</p>
-                <div class="inline">
+                <div class="checkboxes">
+                        <div>
                         <input type="radio" id="status-aktivan" name="status" value="Активан">
                         <label for="status-aktivan" class="text">Активан</label>
-
+                        </div>
+                        <div>
                         <input type="radio" id="status-u-penziji" name="status" value="У пензији">
                         <label for="status-u-penziji" class="text">У пензији</label>
-
+                        </div>
+                        <div>
                         <input type="radio" id="status-preminuo" name="status" value="Преминуо">
                         <label for="status-preminuo" class="text">Преминуо</label>
+                        </div>
                 </div><br>
                 <div class="label-above-input">
                     <label for="biografija" class="text">Биографија:</label>

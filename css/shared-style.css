@@ -32,6 +32,7 @@ header {
 }
 
 .login, .signin, .signout, .delete, .add, .edit {
+    overflow-y: scroll;
     position: fixed;
     top: 0;
     left: 0;
@@ -46,11 +47,6 @@ header {
 .login.show, .signin.show, .signout.show, .delete.show, .add.show, .edit.show{
     opacity: 1;
     pointer-events: auto;
-}
-
-.inline{
-    display: flex;
-    gap: 10px;
 }
 
 .toast {
@@ -118,6 +114,7 @@ header {
     border-right: 2px solid #E8B84B;
     padding-top: 20px;
     padding-bottom: 50px;
+    z-index: 700;
 }
 .sidebar-content{
     display: flex;
@@ -211,7 +208,19 @@ header {
     height: 36px;
 }
 
+.fields{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+.checkboxes{
+    display: flex;
+    gap: 10px;
+}
+
 main {
+    padding-bottom: 40px;
     margin-top: 120px;
     margin-left: 350px;
     display: flex;
@@ -288,6 +297,18 @@ p{
     transition: all 0.3s ease;
 }
 
+
+@media (max-width: 900px) {
+    .fields{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    .popup-content-position {
+        top: 20px;
+        transform: translate(-50%);
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -331,5 +352,15 @@ p{
     }
     .header-right {
     margin-left: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .fields{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    .checkboxes{
+        flex-direction: column;
     }
 }

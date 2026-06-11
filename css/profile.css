@@ -22,6 +22,7 @@
     justify-content: center;
     align-items: center;
     background-color: #161412;
+    overflow-x: hidden;
 }
 
 .rating-and-review-container{
@@ -72,10 +73,6 @@
 
 .review-container{
     background-color: #161412;
-}
-
-.review-container{
-    background-color: #161412;
     border-radius: 5px;
 }
 
@@ -98,4 +95,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+@media (max-width: 1024px){
+    .rating-and-review-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .profile-info{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr; 
+    }
+    .rating{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 450px){
+    .profile-info{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
+    }
+}
+
+@media (max-width: 320px) {
+    .rating{
+        grid-template-columns: 1fr;
+    }
 }

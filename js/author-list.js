@@ -48,7 +48,7 @@ function createAuthorCard(author) {
                 </div>
 
                 <div class="item-element stacked">
-                    <p class="text">Датум рођења:</p>
+                    <p class="text">Рођен:</p>
                     <p class="text">${author.datumRodjenja}</p>
                 </div>
 

@@ -106,7 +106,7 @@ function addSignin() {
             </div>
             <div class="popup-content">
             <form id="signinForm">
-                <div class="inline">
+                <div>
                     <div class="label-above-input">
                         <label for="signin-ime" class="text">Корисничко име:</label>
                         <input type="text" id="signin-ime" name="username" class="input-style"><br>
@@ -117,7 +117,7 @@ function addSignin() {
                     </div>
                 </div><br>
                 <p class="text"> Информације: </p><br>
-                <div class="inline">
+                <div class="fields">
                     <div class="label-above-input">
                         <label for="ime" class="text">Име:</label>
                         <input type="text" id="ime" name="ime" class="input-style"><br>
@@ -130,8 +130,6 @@ function addSignin() {
                         <label for="datum" class="text">Датум Рођења:</label>
                         <input type="text" id="datum" name="datum" class="input-style"><br>
                     </div>
-                </div>
-                <div class="inline">
                     <div class="label-above-input">
                         <label for="adresa" class="text">Адреса:</label>
                         <input type="text" id="adresa" name="adresa" class="input-style"><br>
@@ -285,6 +283,21 @@ export function goToAuthor(authorId) {
   window.location.href = `author.html?id=${authorId}`;
 }
 
+function setLogo(){
+    if (window.innerWidth <= 370){
+        document.querySelector(".logo").src = "../content/nologo.png";
+    }
+    else if (window.innerWidth <= 500) {
+        document.querySelector(".logo").src = "../content/micrologo.png";
+    }
+    else if (window.innerWidth <= 875) {
+        document.querySelector(".logo").src = "../content/minilogo.png";
+    }
+    else{
+        document.querySelector(".logo").src = "../content/Logo.png";
+    }
+}
+
 function main(){
   if (sessionStorage.getItem("username")) {
     addSignout();
@@ -352,9 +365,8 @@ function main(){
     };
     document.querySelector(".logo-container").before(hamburger);
 
-    if (window.innerWidth <= 875) {
-    document.querySelector(".logo").src = "../content/minilogo.png";
-    }
+    setLogo();
+    window.addEventListener("resize", setLogo);
 }
 
 main();
